@@ -6,19 +6,28 @@ import { motion } from "motion/react";
 
 export function HeroSection() {
   return (
-    <div className="relative min-h-screen mt-10 overflow-hidden">
+    <div className="relative  mt-10 overflow-hidden">
       {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-linear(rgba(182,245,0,0.03)_1px,transparent_1px),linear-linear(90deg,rgba(182,245,0,0.03)_1px,transparent_1px)] bg-size-[80px_80px] opacity-50" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="w-full h-full bg-[repeating-linear-gradient(0deg,rgba(182,245,0,0.03)_0_1px,transparent_1px_80px),repeating-linear-gradient(90deg,rgba(182,245,0,0.02)_0_1px,transparent_1px_80px)] bg-[length:80px_80px] opacity-80"
+          style={{
+            maskImage: "linear-gradient(135deg, white 60%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(135deg, white 60%, transparent 100%)",
+          }}
+        />
+      </div>
 
       {/* Radial linear overlays */}
       <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-hr-green-toxic/5 rounded-full blur-[100px]" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-hr-green-light/4 rounded-full blur-[80px]" />
 
       {/* Main Content */}
-      <div className="relative z-10 hr-container pt-16 pb-24 lg:pt-24 lg:pb-32">
+      <div className="relative z-10 hr-container pt-16 lg:pt-24 ">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 ">
           {/* Left Side - Text Content */}
-          <div className="space-y-8 lg:space-y-10">
+          <div className="space-y-8 lg:space-y-10 text-center lg:text-left">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-hr-green-toxic/10 border border-hr-green-toxic/20 rounded-full backdrop-blur-sm">
               <div className="w-2 h-2 bg-hr-green-toxic rounded-full" />
@@ -44,13 +53,13 @@ export function HeroSection() {
                 </span>
               </h1>
               <p
-                className="text-hr-gray max-w-lg font-hr-500 leading-relaxed"
+                className="text-hr-gray max-w-lg mx-auto lg:mx-0 font-hr-500 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-22)" }}
               >
                 Learn from an experienced instructor with proven expertise
               </p>
               <p
-                className="text-hr-fiord max-w-lg leading-relaxed"
+                className="text-hr-fiord max-w-lg mx-auto lg:mx-0 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
                 Master complex biological concepts through engaging lessons,
@@ -60,7 +69,7 @@ export function HeroSection() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 lg:gap-5">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-5">
               <button
                 className="px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
@@ -79,7 +88,7 @@ export function HeroSection() {
             </div>
 
             {/* Enhanced Stats */}
-            <div className="flex items-center gap-8 lg:gap-12 pt-8 border-t border-hr-white/10">
+            <div className="flex items-center justify-center lg:justify-start gap-8 lg:gap-12 pt-8">
               <div className="group">
                 <div
                   className="text-hr-white font-hr-800 mb-1 transition-transform group-hover:scale-110"
@@ -127,16 +136,25 @@ export function HeroSection() {
           </div>
 
           {/* Right Side - Image Card */}
-          <div className="relative lg:h-[750px] flex items-center justify-center">
+          <div className="relative lg:h-[650px] flex items-start justify-center lg:justify-end">
             {/* Instructor Card */}
-            <div className="relative z-10 w-full max-w-md">
-              <div className="relative rounded-3xl overflow-hidden border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl">
-                <div className="relative">
+            <div className="relative z-10 w-full max-w-xl lg:max-w-xl">
+              <div className="relative rounded-3xl overflow-hidden  bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl ">
+                <div className="relative h-[400px] md:h-[600px] lg:h-[630px]">
+                  {/* 
+                    The full image might not be loading because of:
+                    1. `object-contain` (prevents image from stretching but can introduce empty space if aspect ratio doesn't match container)
+                    2. The animation using `clipPath: "inset(0 100% 0 0)"` initially hides 100% of the right side
+                    3. The container's size is set by parent, which may not fit the image
+
+                    To ensure the full image shows, use `object-cover` and a fixed aspect ratio.
+                    Also, try removing unnecessary `clipPath` (or adjust inset values).
+                  */}
                   <motion.div
-                    className="relative overflow-hidden"
-                    initial={{ clipPath: "inset(0 100% 0 0)" }}
-                    animate={{ clipPath: "inset(0 0% 0 0)" }}
-                    whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+                    className="relative overflow-hidden w-full h-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: false, amount: 0.2 }}
                     transition={{
                       duration: 1.2,
@@ -144,26 +162,14 @@ export function HeroSection() {
                       delay: 0.3,
                     }}
                   >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: false, amount: 0.2 }}
-                      transition={{
-                        duration: 1.2,
-                        ease: [0.25, 0.1, 0.25, 1],
-                        delay: 0.5,
-                      }}
-                    >
-                      <Image
-                        src="https://images.unsplash.com/photo-1758685848006-1bc450061624?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFjaGVyJTIwcG9ydHJhaXQlMjBkYXJrfGVufDF8fHx8MTc2NTU5NzcwNXww&ixlib=rb-4.1.0&q=80&w=1080"
-                        alt="Experienced Biology Instructor"
-                        width={800}
-                        height={1000}
-                        className="w-full h-[650px] object-cover"
-                        priority
-                      />
-                    </motion.div>
+                    <Image
+                      src="/hero2.gif"
+                      alt="Experienced Biology Instructor"
+                      width={800}
+                      height={700}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
                   </motion.div>
 
                   {/* Info overlay */}

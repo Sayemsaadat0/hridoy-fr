@@ -1,0 +1,17 @@
+export type CourseLevel = "Beginner" | "Intermediate" | "Advanced";
+
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  level: CourseLevel;
+  duration: string; // e.g., "12 weeks"
+  enrollmentCount: string; // e.g., "2.5K"
+  rating: number; // e.g., 4.9
+}
+
+export interface CourseCardProps {
+  course: Course;
+}
+

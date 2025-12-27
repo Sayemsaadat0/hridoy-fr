@@ -1,4 +1,5 @@
 import DefaultNavbar from "@/components/core/navbars/DefaultNavbar";
+import DefaultFooter from "@/components/core/footer/DefaultFooter";
 import React from "react";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
@@ -6,6 +7,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <DefaultNavbar />
       {children}
+      <DefaultFooter />
     </div>
   );
 };

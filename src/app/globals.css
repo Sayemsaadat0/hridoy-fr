@@ -128,17 +128,11 @@ button {
 
 /* Container */
 .hr-container {
-  max-width: 1666px;
+  max-width: 1366px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 64px;
   padding-right: 64px;
-}
-@media screen and (max-width: 1564px) {
-  .hr-container {
-    padding-left: 57px;
-    padding-right: 57px;
-  }
 }
 
 @media screen and (max-width: 1280px) {
@@ -206,4 +200,16 @@ button {
 
 .font-hr-900 {
   font-weight: var(--font-weight-hr-900);
+}
+
+
+
+::selection {
+  background: var(--color-hr-green-toxic);
+  color: var(--color-hr-black);
+}
+
+::-moz-selection {
+  background: var(--color-hr-green-toxic);
+  color: var(--color-hr-black);
 }

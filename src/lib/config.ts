@@ -3,7 +3,7 @@ export const ROUTES = {
   ABOUT: "/about",
   CONTACT: "/contact",
   NOTICE: "/notice",
-  COURSE: "/course",
+  COURSE: "/courses",
   ADMIN: "/admin",
 };
 
@@ -12,6 +12,10 @@ export const site_navigation_items = {
     {
       label: "Home",
       href: ROUTES.HOME,
+    },
+    {
+      label: "Course",
+      href: ROUTES.COURSE,
     },
     {
       label: "About",
@@ -24,10 +28,6 @@ export const site_navigation_items = {
     {
       label: "Notice",
       href: ROUTES.NOTICE,
-    },
-    {
-      label: "Course",
-      href: ROUTES.COURSE,
     },
   ],
 };

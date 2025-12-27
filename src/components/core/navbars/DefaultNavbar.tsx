@@ -22,7 +22,7 @@ const DefaultNavbar = () => {
   const menuItems = site_navigation_items.defaultMenuItems;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-hr-green-dark border-b border-hr-fiord/20 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50  backdrop-blur-sm">
       <div className="hr-container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -31,7 +31,17 @@ const DefaultNavbar = () => {
             className="flex items-center font-hr-700 text-hr-white hover:opacity-80 transition-opacity"
             style={{ fontSize: "var(--text-hr-regular-24)" }}
           >
-            <span>Logo</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
+                <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
+              </div>
+              <h3
+                className="text-hr-white font-hr-800"
+                style={{ fontSize: "var(--text-hr-regular-24)" }}
+              >
+                Biology Adda Bogura
+              </h3>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
@@ -89,7 +99,12 @@ const DefaultNavbar = () => {
                       style={{ fontSize: "var(--text-hr-regular-20)" }}
                       onClick={() => setIsOpen(false)}
                     >
-                      Logo
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
+                          <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
+                        </div>
+                        
+                      </div>
                     </Link>
                   </div>
 
