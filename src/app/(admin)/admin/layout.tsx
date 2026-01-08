@@ -1,9 +1,10 @@
 import React from 'react'
+import AdminLayout from '@/components/layouts/AdminLayout'
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <AdminLayout>
         {children}
-    </div>
+    </AdminLayout>
   )
 }
 

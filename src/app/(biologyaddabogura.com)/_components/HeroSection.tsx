@@ -1,10 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { Play, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export function HeroSection() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <div className="relative  mt-10 overflow-hidden">
       {/* Animated background grid */}
@@ -70,21 +79,43 @@ export function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 lg:gap-5">
-              <button
-                className="px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600"
-                style={{ fontSize: "var(--text-hr-regular-16)" }}
-              >
-                Get Started
-              </button>
-              <button
-                className="flex items-center gap-3 px-6 py-4 text-hr-white hover:text-hr-green-toxic transition-colors group"
-                style={{ fontSize: "var(--text-hr-regular-16)" }}
-              >
-                <div className="w-14 h-14 rounded-full bg-hr-white/5 backdrop-blur-sm border border-hr-white/10 flex items-center justify-center group-hover:bg-hr-green-toxic/10 group-hover:border-hr-green-toxic/30 transition-all">
-                  <Play className="w-6 h-6 fill-current ml-1 text-hr-white group-hover:text-hr-green-toxic transition-colors" />
-                </div>
-                <span className="font-hr-500">Watch Video</span>
-              </button>
+              <Link href="/contact">
+                <button
+                  className="px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600"
+                  style={{ fontSize: "var(--text-hr-regular-16)" }}
+                >
+                  Enroll Now
+                </button>
+              </Link>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    className="flex items-center gap-3 px-6 py-4 text-hr-white hover:text-hr-green-toxic transition-colors group"
+                    style={{ fontSize: "var(--text-hr-regular-16)" }}
+                  >
+                    <div className="w-14 h-14 rounded-full bg-hr-white/5 backdrop-blur-sm border border-hr-white/10 flex items-center justify-center group-hover:bg-hr-green-toxic/10 group-hover:border-hr-green-toxic/30 transition-all">
+                      <Play className="w-6 h-6 fill-current ml-1 text-hr-white group-hover:text-hr-green-toxic transition-colors" />
+                    </div>
+                    <span className="font-hr-500">Watch Video</span>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="min-w-2xl md:min-w-3xl lg:min-w-4xl bg-hr-black border-hr-white/20 p-0">
+                  <DialogTitle className="sr-only">Watch Video</DialogTitle>
+                  <div className="relative w-full aspect-video">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/pd24nRNRR8c?si=TtPEH4UzO521fCnU"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="absolute inset-0 rounded-lg"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Enhanced Stats */}
@@ -139,6 +170,7 @@ export function HeroSection() {
           <div className="relative lg:h-[650px] flex items-start justify-center lg:justify-end">
             {/* Instructor Card */}
             <div className="relative z-10 w-full max-w-xl lg:max-w-xl">
+              {/* <div className="relative rounded-3xl overflow-hidden   backdrop-blur-sm shadow-xl "> */}
               <div className="relative rounded-3xl overflow-hidden  bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl ">
                 <div className="relative h-[400px] md:h-[600px] lg:h-[630px]">
                   {/* 
@@ -163,11 +195,12 @@ export function HeroSection() {
                     }}
                   >
                     <Image
+                      // src="https://media.discordapp.net/attachments/1457987145389314170/1458763109656428656/WhatsApp_Image_2026-01-08_at_16.03.03.jpeg?ex=6960d283&is=695f8103&hm=50a8bd9e8663215f5e27deb90d6b048524f8ef6fe87cf60f889d00681d9b974a&=&format=webp&width=779&height=779"
                       src="/hero2.gif"
                       alt="Experienced Biology Instructor"
                       width={800}
                       height={700}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-3xl "
                       priority
                     />
                   </motion.div>

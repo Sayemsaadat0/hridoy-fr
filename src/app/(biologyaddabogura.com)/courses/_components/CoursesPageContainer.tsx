@@ -31,7 +31,7 @@ const CoursesPageContainer = () => {
       level: "Advanced",
       duration: "12 weeks",
       enrollmentCount: "2.5K",
-      rating: 4.9,
+      // rating: 4.9,
     },
     {
       id: "2",
@@ -43,7 +43,7 @@ const CoursesPageContainer = () => {
       level: "Beginner",
       duration: "8 weeks",
       enrollmentCount: "4.2K",
-      rating: 4.8,
+      // rating: 4.8,
     },
     {
       id: "3",
@@ -55,7 +55,7 @@ const CoursesPageContainer = () => {
       level: "Intermediate",
       duration: "10 weeks",
       enrollmentCount: "3.1K",
-      rating: 4.9,
+      // rating: 4.9,
     },
     {
       id: "4",
@@ -67,7 +67,7 @@ const CoursesPageContainer = () => {
       level: "Intermediate",
       duration: "14 weeks",
       enrollmentCount: "3.8K",
-      rating: 4.7,
+      // rating: 4.7,
     },
     {
       id: "5",
@@ -79,7 +79,7 @@ const CoursesPageContainer = () => {
       level: "Beginner",
       duration: "9 weeks",
       enrollmentCount: "2.9K",
-      rating: 4.6,
+      // rating: 4.6,
     },
     {
       id: "6",
@@ -91,7 +91,7 @@ const CoursesPageContainer = () => {
       level: "Intermediate",
       duration: "11 weeks",
       enrollmentCount: "2.1K",
-      rating: 4.8,
+      // rating: 4.8,
     },
   ];
 

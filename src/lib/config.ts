@@ -13,10 +13,10 @@ export const site_navigation_items = {
       label: "Home",
       href: ROUTES.HOME,
     },
-    {
-      label: "Course",
-      href: ROUTES.COURSE,
-    },
+    // {
+    //   label: "Course",
+    //   href: ROUTES.COURSE,
+    // },
     {
       label: "About",
       href: ROUTES.ABOUT,

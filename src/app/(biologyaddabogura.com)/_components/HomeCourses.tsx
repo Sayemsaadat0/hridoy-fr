@@ -9,40 +9,39 @@ const HomeCourses = () => {
   const courses: Course[] = [
     {
       id: "1",
-      title: "Molecular Biology Masterclass",
+      title: "Biology Adda Bogura - Free Class 2026",
       description:
-        "Deep dive into DNA, RNA, and protein synthesis with hands-on virtual lab experiences.",
+        "দ্রুতা প্রদান ও চলন - ৯ ",
       thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Advanced",
-      duration: "12 weeks",
-      enrollmentCount: "2.5K",
-      rating: 4.9,
-    },
-    {
-      id: "2",
-      title: "Cell Biology Fundamentals",
-      description:
-        "Master cellular structures, functions, and processes from the ground up.",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Beginner",
-      duration: "8 weeks",
-      enrollmentCount: "4.2K",
-      rating: 4.8,
-    },
-    {
-      id: "3",
-      title: "Genetics & Evolution",
-      description:
-        "Explore heredity, genetic variation, and evolutionary biology principles.",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
+        "https://media.discordapp.net/attachments/1457987145389314170/1458763109656428656/WhatsApp_Image_2026-01-08_at_16.03.03.jpeg?ex=6960d283&is=695f8103&hm=50a8bd9e8663215f5e27deb90d6b048524f8ef6fe87cf60f889d00681d9b974a&=&format=webp&width=779&height=779",
       level: "Intermediate",
-      duration: "10 weeks",
-      enrollmentCount: "3.1K",
-      rating: 4.9,
+      duration: "2 weeks",
+      enrollmentCount: null,
     },
+    // {
+    //   id: "2",
+    //   title: "Cell Biology Fundamentals",
+    //   description:
+    //     "Master cellular structures, functions, and processes from the ground up.",
+    //   thumbnail:
+    //     "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
+    //   level: "Beginner",
+    //   duration: "8 weeks",
+    //   enrollmentCount: "4.2K",
+    //   rating: 4.8,
+    // },
+    // {
+    //   id: "3",
+    //   title: "Genetics & Evolution",
+    //   description:
+    //     "Explore heredity, genetic variation, and evolutionary biology principles.",
+    //   thumbnail:
+    //     "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
+    //   level: "Intermediate",
+    //   duration: "10 weeks",
+    //   enrollmentCount: "3.1K",
+    //   rating: 4.9,
+    // },
   ];
 
   return (
@@ -89,7 +88,7 @@ const HomeCourses = () => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center">
+        {/* <div className="text-center">
           <button
             className="px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600 group"
             style={{ fontSize: "var(--text-hr-regular-16)" }}
@@ -99,7 +98,7 @@ const HomeCourses = () => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

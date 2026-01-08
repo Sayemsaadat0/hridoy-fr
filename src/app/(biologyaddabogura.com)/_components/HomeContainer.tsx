@@ -2,6 +2,7 @@ import React from 'react'
 import { HeroSection } from './HeroSection'
 import HomeAbout from './HomeAbout'
 import HomeCourses from './HomeCourses'
+import GoogleReviews from './GoogleReviews'
 import HomeFAQ from './HomeFAQ'
 
 const HomeContainer = () => {
@@ -10,6 +11,7 @@ const HomeContainer = () => {
         <HeroSection />
         <HomeAbout />
         <HomeCourses />
+        <GoogleReviews />
         <HomeFAQ />
     </div>
   )

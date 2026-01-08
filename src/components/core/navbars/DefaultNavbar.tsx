@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { site_navigation_items } from "@/lib/config";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const DefaultNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,13 @@ const DefaultNavbar = () => {
             className="flex items-center font-hr-700 text-hr-white hover:opacity-80 transition-opacity"
             style={{ fontSize: "var(--text-hr-regular-24)" }}
           >
-            <div className="flex items-center gap-3">
+            <Image
+              src="/logo2.png"
+              alt="Biology Adda Bogura"
+              width={200}
+              height={100}
+            />
+            {/* <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
                 <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
               </div>
@@ -41,7 +48,7 @@ const DefaultNavbar = () => {
               >
                 Biology Adda Bogura
               </h3>
-            </div>
+            </div> */}
           </Link>
 
           {/* Desktop Menu */}
@@ -103,7 +110,6 @@ const DefaultNavbar = () => {
                         <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
                           <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
                         </div>
-                        
                       </div>
                     </Link>
                   </div>

@@ -12,39 +12,21 @@ import { cn } from "@/lib/utils";
 const faqData = [
   {
     id: "1",
-    question: "What courses are available?",
+    question: "Where is the location and contact info?",
     answer:
-      "We offer a comprehensive range of biology courses including Molecular Biology, Cell Biology, Genetics & Evolution, and many more. All courses are designed by expert educators and researchers.",
+      "Biology adda Bogura is located near Bogura City College. You can reach us at phone: 01518390674 or email: info@biologyaddabogura.com. Visit our contact page for more details and directions.",
   },
   {
     id: "2",
-    question: "How long does it take to complete a course?",
+    question: "What courses are running right now? What sector do we cover?",
     answer:
-      "Course duration varies depending on the program. Beginner courses typically take 8 weeks, intermediate courses take 10 weeks, and advanced courses take 12 weeks. You can learn at your own pace.",
+      "We currently offer courses for Inter 1st Year, Inter 2nd Year, Class 9-10 Biology, and Admission preparation. Our comprehensive curriculum covers all major biology topics to help students excel in their academic journey.",
   },
   {
     id: "3",
-    question: "Do I need prior biology knowledge?",
+    question: "What educational levels do you cover?",
     answer:
-      "No prior knowledge is required for our beginner courses. We offer courses for all levels - from complete beginners to advanced students. Each course clearly indicates its difficulty level.",
-  },
-  {
-    id: "4",
-    question: "Are the courses self-paced or scheduled?",
-    answer:
-      "Our courses are designed to be flexible. You can learn at your own pace while having access to scheduled live sessions with instructors for additional support and Q&A sessions.",
-  },
-  {
-    id: "5",
-    question: "What kind of support do I get?",
-    answer:
-      "You'll have access to expert instructors, interactive modules, virtual lab experiences, community forums, and personalized guidance to help you succeed in your biology education journey.",
-  },
-  {
-    id: "6",
-    question: "Can I get a certificate after completion?",
-    answer:
-      "Yes! Upon successful completion of any course, you'll receive a certificate that you can add to your portfolio or resume, demonstrating your commitment to biology education.",
+      "We cover Inter 1st Year, Inter 2nd Year, Class 9-10 Biology, and Admission preparation courses. Our expert tutoring helps students at all these levels master biology concepts and achieve their academic goals.",
   },
 ];
 

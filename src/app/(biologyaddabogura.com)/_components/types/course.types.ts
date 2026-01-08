@@ -7,8 +7,7 @@ export interface Course {
   thumbnail: string;
   level: CourseLevel;
   duration: string; // e.g., "12 weeks"
-  enrollmentCount: string; // e.g., "2.5K"
-  rating: number; // e.g., 4.9
+  enrollmentCount: string | null; // e.g., "2.5K"
 }
 
 export interface CourseCardProps {

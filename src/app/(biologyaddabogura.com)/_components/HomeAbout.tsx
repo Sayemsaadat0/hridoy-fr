@@ -28,7 +28,7 @@ const HomeAbout = () => {
 
         {/* Main Heading */}
         <div className="mb-12 lg:mb-16 text-center">
-          <h2 className=" mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800" >
+          <h2 className=" mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
             Empowering Future{" "}
             <span className="text-hr-green-toxic">Biologists</span>
           </h2>
@@ -36,8 +36,8 @@ const HomeAbout = () => {
             className="text-hr-gray max-w-2xl mx-auto font-hr-500 leading-relaxed"
             style={{ fontSize: "var(--text-hr-regular-18)" }}
           >
-            We&apos;re dedicated to making biology education accessible, engaging, and
-            effective for students at all levels.
+            We&apos;re dedicated to making biology education accessible,
+            engaging, and effective for students at all levels.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ const HomeAbout = () => {
                 }}
               >
                 <Image
-                  src="https://i.pinimg.com/736x/32/97/37/32973760db2488524bbd44db4362b070.jpg"
+                  src="https://media.discordapp.net/attachments/1457987145389314170/1458774515776622602/download_72.jpg?ex=6960dd23&is=695f8ba3&hm=c6ce39e6312ed81e112ede4744a9c7465c1ccd676a272f2ac3e39bb4df53acde&=&format=webp&width=779&height=779"
                   alt="Biology Laboratory"
                   width={800}
                   height={600}
@@ -90,7 +90,7 @@ const HomeAbout = () => {
                       className="text-hr-green-toxic font-hr-800 mb-1"
                       style={{ fontSize: "var(--text-hr-regular-32)" }}
                     >
-                      15+
+                      6+
                     </div>
                     <div
                       className="text-hr-white font-hr-500"
@@ -118,18 +118,18 @@ const HomeAbout = () => {
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
                 Biology Adda was founded with a simple mission: to transform the
-                way students learn and understand biology. Our expert-led courses
-                combine cutting-edge research with practical applications,
-                ensuring you gain both theoretical knowledge and real-world
-                skills.
+                way students learn and understand biology. Our expert-led
+                courses combine cutting-edge research with practical
+                applications, ensuring you gain both theoretical knowledge and
+                real-world skills.
               </p>
               <p
                 className="text-hr-fiord font-hr-400 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
                 With a team of experienced educators, researchers, and industry
-                professionals, we&apos;ve helped thousands of students achieve their
-                academic and career goals in biological sciences.
+                professionals, we&apos;ve helped thousands of students achieve
+                their academic and career goals in biological sciences.
               </p>
             </div>
 
@@ -154,13 +154,13 @@ const HomeAbout = () => {
                   className="text-hr-green-toxic font-hr-800 mb-1 transition-transform group-hover:scale-110"
                   style={{ fontSize: "var(--text-hr-regular-32)" }}
                 >
-                  50K+
+                  20K+
                 </div>
                 <div
                   className="text-hr-white font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Hours of Content
+                  Students Enrolled Since 2018
                 </div>
               </div>
             </div>

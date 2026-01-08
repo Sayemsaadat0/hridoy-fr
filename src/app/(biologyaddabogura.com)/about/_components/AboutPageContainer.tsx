@@ -31,47 +31,49 @@ const AboutPageContainer = () => {
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              Meet your dedicated biology tutor with over 6 years of teaching experience, 
+              committed to helping students excel in biology through personalized, 
+              comprehensive, and engaging lessons.
             </p>
           </div>
         </div>
       </section>
 
 
-      {/* Section 3: We make sure your idea & creation delivered properly */}
+      {/* Section 3: Teaching Philosophy */}
       <section className="relative py-10 lg:py-16">
         <div className="hr-container">
           <h2
             className="text-hr-white font-hr-800 mb-6 lg:mb-8 text-center lg:text-left"
             style={{ fontSize: "var(--text-hr-regular-40)" }}
           >
-            We make sure your <span className="text-hr-green-toxic">idea & creation</span> delivered properly
+            Your <span className="text-hr-green-toxic">Biology Learning</span> Journey Starts Here
           </h2>
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-16)" }}
             >
-              Pellentesque mollis urna vel semper egestas. Duis ac dictum lacus.
-              Sed sagittis non nunc ac malesuada. Quisque ut eleifend urna.
-              Etiam nec porttitor erat, vel ullamcorper erat. Fusce euismod
-              ipsum eget nunc pulvinar feugiat.
+              As an experienced biology tutor teaching since 2018, I understand that every 
+              student learns differently. My teaching approach combines clear explanations, 
+              visual aids, and practical examples to make complex biological concepts 
+              easy to understand and remember.
             </p>
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-16)" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Whether you&apos;re preparing for exams, struggling with specific topics, 
+              or aiming to deepen your understanding of biology, I provide personalized 
+              guidance tailored to your learning style and goals. From cell biology to 
+              genetics, ecology to human anatomy, I cover all aspects of biology with 
+              passion and expertise.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Section 4: We empower small business owners */}
+      {/* Section 4: Teaching Experience & Journey */}
       <section className="relative py-10 lg:py-16 bg-hr-green-dark/50">
         <div className="hr-container">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -97,7 +99,7 @@ const AboutPageContainer = () => {
                 >
                   <Image
                     src="https://i.pinimg.com/736x/48/96/6d/48966deea1b696cfee331a4bfc94cd26.jpg"
-                    alt="Business owner"
+                    alt="Biology tutor teaching students"
                     width={800}
                     height={600}
                     className="w-full h-[400px] lg:h-[500px] object-cover"
@@ -112,13 +114,13 @@ const AboutPageContainer = () => {
                     className="text-hr-white font-hr-700 mb-1"
                     style={{ fontSize: "var(--text-hr-regular-18)" }}
                   >
-                    &quot;Making an impact, together&quot;
+                    &quot;Empowering students to excel in biology since 2018&quot;
                   </p>
                   <p
                     className="text-hr-gray font-hr-500"
                     style={{ fontSize: "var(--text-hr-regular-14)" }}
                   >
-                    Biology Adda Founder
+                    Experienced Biology Tutor
                   </p>
                 </div>
               </motion.div>
@@ -130,15 +132,17 @@ const AboutPageContainer = () => {
                 className="text-hr-white font-hr-800"
                 style={{ fontSize: "var(--text-hr-regular-40)" }}
               >
-                We <span className="text-hr-green-toxic">empower</span> small business owners
+                <span className="text-hr-green-toxic">6+ Years</span> of Teaching Excellence
               </h2>
               <p
                 className="text-hr-gray font-hr-400 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
-                Sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Since 2018, I have been dedicated to helping students master biology 
+                through comprehensive tutoring. My experience spans all levels of biology 
+                education, from high school fundamentals to advanced topics. I believe 
+                in creating a supportive learning environment where students can ask 
+                questions, explore concepts, and build confidence in their biology skills.
               </p>
 
               {/* Quote */}
@@ -148,9 +152,9 @@ const AboutPageContainer = () => {
                   className="text-hr-gray font-hr-400 leading-relaxed italic"
                   style={{ fontSize: "var(--text-hr-regular-16)" }}
                 >
-                  &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation&quot;
+                  &quot;Biology is not just about memorizing facts—it&apos;s about 
+                  understanding the fascinating world of living organisms. My goal is 
+                  to make biology accessible, engaging, and enjoyable for every student.&quot;
                 </p>
               </div>
             </div>
@@ -158,7 +162,7 @@ const AboutPageContainer = () => {
         </div>
       </section>
 
-      {/* Section 5: We help business to grow faster and bigger */}
+      {/* Section 5: Why Choose This Biology Tutor */}
       <section className="relative py-10 lg:py-16">
         <div className="hr-container">
           <div className="text-center mb-8 lg:mb-12">
@@ -166,14 +170,15 @@ const AboutPageContainer = () => {
               className="text-hr-white font-hr-800 mb-6"
               style={{ fontSize: "var(--text-hr-regular-40)" }}
             >
-              We help business to <span className="text-hr-green-toxic">grow faster</span> and bigger
+              Why Choose <span className="text-hr-green-toxic">Biology Adda</span> for Your Learning
             </h2>
             <p
               className="text-hr-gray max-w-2xl mx-auto font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              With over 6 years of dedicated teaching experience, I provide comprehensive 
+              biology tutoring that helps students achieve their academic goals and develop 
+              a deep understanding of biological sciences.
             </p>
           </div>
 
@@ -182,21 +187,21 @@ const AboutPageContainer = () => {
             {[
               {
                 icon: Users,
-                title: "Professional Team",
+                title: "Experienced Tutor",
                 description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.",
+                  "Teaching biology since 2018 with proven expertise in all major biology topics, from cell structure to ecology and genetics.",
               },
               {
                 icon: Target,
-                title: "Target Oriented",
+                title: "Personalized Learning",
                 description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.",
+                  "Tailored teaching approach that adapts to each student&apos;s learning style, pace, and specific academic needs.",
               },
               {
                 icon: TrendingUp,
-                title: "Success Guarantee",
+                title: "Proven Results",
                 description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.",
+                  "Helping students improve their grades, build confidence, and develop a genuine passion for biology through effective teaching methods.",
               },
             ].map((feature, index) => {
               const Icon = feature.icon;
@@ -216,17 +221,17 @@ const AboutPageContainer = () => {
                     className="text-hr-white font-hr-700"
                     style={{ fontSize: "var(--text-hr-regular-24)" }}
                   >
-                    {feature.title === "Professional Team" ? (
+                    {feature.title === "Experienced Tutor" ? (
                       <>
-                        <span className="text-hr-green-toxic">Professional</span> Team
+                        <span className="text-hr-green-toxic">Experienced</span> Tutor
                       </>
-                    ) : feature.title === "Target Oriented" ? (
+                    ) : feature.title === "Personalized Learning" ? (
                       <>
-                        Target <span className="text-hr-green-toxic">Oriented</span>
+                        Personalized <span className="text-hr-green-toxic">Learning</span>
                       </>
                     ) : (
                       <>
-                        <span className="text-hr-green-toxic">Success</span> Guarantee
+                        <span className="text-hr-green-toxic">Proven</span> Results
                       </>
                     )}
                   </h3>
