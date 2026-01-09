@@ -213,13 +213,15 @@ export function HeroSection() {
                           className="text-hr-white font-hr-700 mb-1"
                           style={{ fontSize: "var(--text-hr-regular-20)" }}
                         >
-                          Dr. Sarah Mitchell
+                          Ittahadul Islam Ridoy
                         </div>
                         <div
                           className="text-hr-gray font-hr-500"
                           style={{ fontSize: "var(--text-hr-regular-14)" }}
                         >
-                          PhD in Molecular Biology
+                          B.Sc Honours (Dept. of Botany) <br />
+                           M.Sc in Industrial
+                          Biotechnology
                         </div>
                       </div>
                     </div>
