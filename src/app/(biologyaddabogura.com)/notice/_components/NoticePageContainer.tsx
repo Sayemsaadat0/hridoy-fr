@@ -1,13 +1,32 @@
 "use client";
 
 import React from "react";
-import { Eye, Download } from "lucide-react";
 import { motion } from "motion/react";
 import { Notice, NoticePriority, NoticeStatus } from "./types/notice.types";
 
 const NoticePageContainer = () => {
-  // No notices for now
-  const notices: Notice[] = [];
+  const notices: Notice[] = [
+    {
+      id: "1",
+      date: "৬ মার্চ ২০২৫",
+      title: "নবম শ্রেণী – চ্যাপ্টার ফাইনাল পরীক্ষা",
+      priority: "HIGH",
+      category: "পরীক্ষা",
+      description:
+        "আগামীকাল শুক্রবার 6 মার্চ নবম শ্রেণীর দ্বিতীয় অধ্যায়ের উপরে চ্যাপ্টার ফাইনাল পরীক্ষা অনুষ্ঠিত হবে। পরীক্ষার ধরনঃ তিনটি সৃজনশীল থাকবে প্রশ্ন থাকবে দুইটির উত্তর দিতে হবে। Ridoy sir's Biology classroom.",
+      status: "Upcoming",
+    },
+    {
+      id: "2",
+      date: "৬ মার্চ ২০২৫",
+      title: "দশম শ্রেণী – Short Question পরীক্ষা",
+      priority: "HIGH",
+      category: "পরীক্ষা",
+      description:
+        "আগামীকাল শুক্রবার 6 মার্চ, ১০ ম শ্রেণীর ১১ অধ্যায়ের উপরে Short Question পরীক্ষা অনুষ্ঠিত হবে। Ridoy sir's Biology classroom.",
+      status: "Upcoming",
+    },
+  ];
 
   const getPriorityBadgeColor = (priority: NoticePriority) => {
     switch (priority) {
@@ -65,19 +84,61 @@ const NoticePageContainer = () => {
         </div>
       </section>
 
-      {/* Section 2: Empty State */}
+      {/* Section 2: Notice Cards */}
       <section className="relative py-10 lg:py-16">
         <div className="hr-container relative z-10">
-          <div className="rounded-3xl border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl p-12 lg:p-16">
-            <div className="text-center">
-              <p
-                className="text-hr-gray font-hr-400"
-                style={{ fontSize: "var(--text-hr-regular-18)" }}
-              >
-                No notices available at the moment. Check back later for updates.
-              </p>
+          {notices.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+              {notices.map((notice, index) => (
+                <motion.div
+                  key={notice.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="rounded-3xl border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl p-6 lg:p-8 hover:border-hr-green-toxic/30 transition-colors"
+                >
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${getPriorityBadgeColor(notice.priority)}`}
+                    >
+                      {notice.priority}
+                    </span>
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${getStatusBadgeColor(notice.status)}`}
+                    >
+                      {notice.status}
+                    </span>
+                    <span className="text-hr-gray text-sm font-hr-400">
+                      {notice.date}
+                    </span>
+                  </div>
+                  <h3
+                    className="text-hr-white font-hr-700 mb-3"
+                    style={{ fontSize: "var(--text-hr-regular-20)" }}
+                  >
+                    {notice.title}
+                  </h3>
+                  <p
+                    className="text-hr-gray font-hr-400 leading-relaxed"
+                    style={{ fontSize: "var(--text-hr-regular-16)" }}
+                  >
+                    {notice.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="rounded-3xl border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl p-12 lg:p-16">
+              <div className="text-center">
+                <p
+                  className="text-hr-gray font-hr-400"
+                  style={{ fontSize: "var(--text-hr-regular-18)" }}
+                >
+                  No notices available at the moment. Check back later for updates.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
