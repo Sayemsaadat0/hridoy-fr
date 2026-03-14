@@ -4,6 +4,7 @@ export const ROUTES = {
   CONTACT: "/contact",
   NOTICE: "/notice",
   COURSE: "/courses",
+  GALLERY: "/gallery",
   ADMIN: "/admin",
 };
 
@@ -28,6 +29,10 @@ export const site_navigation_items = {
     {
       label: "Notice",
       href: ROUTES.NOTICE,
+    },
+    {
+      label: "Gallery",
+      href: ROUTES.GALLERY,
     },
   ],
 };
