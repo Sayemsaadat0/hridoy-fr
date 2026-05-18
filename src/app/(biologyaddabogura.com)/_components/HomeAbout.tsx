@@ -1,16 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+
+const images = [
+  "/p/1.jpg",
+  "/p/2.jpg",
+  "/p/3.jpg",
+  "/p/4.jpg",
+  "/p/5.jpg",
+  "/p/6.jpg",
+];
 
 const HomeAbout = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
   return (
     <div className="relative overflow-hidden">
       {/* Radial gradient overlays */}
       {/* <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-hr-green-toxic/5 rounded-full blur-[100px]" />
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-hr-green-light/4 rounded-full blur-[80px]" /> */}
-
+ 
       {/* Main Content */}
       <div className="relative z-10 hr-container">
         {/* Badge */}
@@ -43,7 +61,7 @@ const HomeAbout = () => {
 
         {/* Two Column Layout */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Side - Image */}
+          {/* Left Side - Image Slider */}
           <div className="relative">
             <motion.div
               className="relative rounded-3xl overflow-hidden border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm shadow-xl"
@@ -57,48 +75,66 @@ const HomeAbout = () => {
                 delay: 0.3,
               }}
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{
-                  duration: 1.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                  delay: 0.5,
-                }}
-              >
-                <Image
-                  src="https://media.discordapp.net/attachments/1457987145389314170/1458774515776622602/download_72.jpg?ex=6960dd23&is=695f8ba3&hm=c6ce39e6312ed81e112ede4744a9c7465c1ccd676a272f2ac3e39bb4df53acde&=&format=webp&width=779&height=779"
-                  alt="Biology Laboratory"
-                  width={800}
-                  height={600}
-                  className="w-full h-[500px] lg:h-[600px] object-cover"
-                  priority
-                  unoptimized
-                  onError={(e) => {
-                    console.error("Image failed to load:", e);
-                  }}
-                />
-              </motion.div>
+              <div className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
+                    className="absolute inset-0 w-full h-full cursor-pointer"
+                    onClick={() => {
+                      setCurrentIndex((prev) => (prev + 1) % images.length);
+                    }}
+                  >
+                    <Image
+                      src={images[currentIndex]}
+                      alt={`Biology Laboratory slide ${currentIndex + 1}`}
+                      fill
+                      className="object-cover"
+                      priority={currentIndex === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
-              {/* Overlay with Stats */}
-              <div className="absolute bottom-0 left-0 bg-linear-to-t h-1/2 from-hr-black to-transparent right-0 p-6 lg:p-8">
-                <div className="flex h-full items-end">
-                  <div className="bg-hr-black/60 backdrop-blur-sm rounded-xl border border-hr-white/10 px-6 py-5">
-                    <div
-                      className="text-hr-green-toxic font-hr-800 mb-1"
-                      style={{ fontSize: "var(--text-hr-regular-32)" }}
-                    >
-                      6+
-                    </div>
-                    <div
-                      className="text-hr-white font-hr-500"
-                      style={{ fontSize: "var(--text-hr-regular-14)" }}
-                    >
-                      Years of Excellence
+                {/* Overlay with Stats */}
+                <div className="absolute bottom-0 left-0 bg-linear-to-t h-1/2 from-hr-black/90 to-transparent right-0 p-6 lg:p-8 z-10 pointer-events-none">
+                  <div className="flex h-full items-end">
+                    <div className="bg-hr-black/60 backdrop-blur-sm rounded-xl border border-hr-white/10 px-6 py-5 pointer-events-auto">
+                      <div
+                        className="text-hr-green-toxic font-hr-800 mb-1"
+                        style={{ fontSize: "var(--text-hr-regular-32)" }}
+                      >
+                        6+
+                      </div>
+                      <div
+                        className="text-hr-white font-hr-500"
+                        style={{ fontSize: "var(--text-hr-regular-14)" }}
+                      >
+                        Years of Excellence
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                {/* Slide Indicators */}
+                <div className="absolute bottom-6 right-6 flex gap-2 z-20">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentIndex
+                          ? "w-6 bg-hr-green-toxic"
+                          : "w-2 bg-hr-white/40 hover:bg-hr-white/60"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </motion.div>

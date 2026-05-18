@@ -13,7 +13,7 @@ const HomeCourses = () => {
       description:
         "দ্রুতা প্রদান ও চলন - ৯ ",
       thumbnail:
-        "https://media.discordapp.net/attachments/1457987145389314170/1458763109656428656/WhatsApp_Image_2026-01-08_at_16.03.03.jpeg?ex=6960d283&is=695f8103&hm=50a8bd9e8663215f5e27deb90d6b048524f8ef6fe87cf60f889d00681d9b974a&=&format=webp&width=779&height=779",
+        "/p/12.png",
       level: "Intermediate",
       duration: "2 weeks",
       enrollmentCount: null,
