@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://biologyaddabogura.com"),
+  metadataBase: new URL("https://ridoysirbiology.com"),
   title: {
     default: "Biology Adda Bogura - Expert Biology Tutoring Since 2018",
     template: "%s | Biology Adda Bogura",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://biologyaddabogura.com",
+    url: "https://ridoysirbiology.com",
     siteName: "Biology Adda Bogura",
     title: "Biology Adda Bogura - Expert Biology Tutoring Since 2018",
     description:
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://biologyaddabogura.com",
+    canonical: "https://ridoysirbiology.com",
   },
   category: "Education",
   classification: "Biology Tutoring and Education",

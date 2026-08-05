@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "hridoy-fr Admin API",
+    "description": "Auth API for the biologyaddabogura.com admin panel. Session is a JWT stored in an httpOnly cookie, set on login and cleared on logout.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "/api", "description": "Same-origin API routes" }
+  ],
+  "tags": [
+    { "name": "Auth", "description": "Admin authentication" }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Log in as admin",
+        "description": "Validates credentials against the Admin collection and, on success, sets an httpOnly session cookie (`admin_session`, JWT, 8h expiry).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" },
+              "example": {
+                "email": "admin@example.com",
+                "password": "supersecret"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful. Sets the `admin_session` cookie.",
+            "headers": {
+              "Set-Cookie": {
+                "schema": { "type": "string" },
+                "description": "admin_session=<jwt>; HttpOnly; Path=/; SameSite=Lax; Max-Age=28800"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AdminUser" }
+              }
+            }
+          },
+          "400": {
+            "description": "Request body failed validation (missing/invalid email or password)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error": "Invalid email or password" }
+              }
+            }
+          },
+          "401": {
+            "description": "No admin found for that email, or password does not match",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error": "Invalid credentials" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Log out",
+        "description": "Clears the `admin_session` cookie. No request body.",
+        "responses": {
+          "200": {
+            "description": "Logout successful",
+            "headers": {
+              "Set-Cookie": {
+                "schema": { "type": "string" },
+                "description": "admin_session=; HttpOnly; Path=/; Max-Age=0"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean", "example": true }
+                  },
+                  "required": ["success"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get the current session",
+        "description": "Reads the `admin_session` cookie and returns the decoded session if valid.",
+        "responses": {
+          "200": {
+            "description": "Authenticated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AdminUser" }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, or expired session cookie",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+                "example": { "error": "Not authenticated" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "format": "email" },
+          "password": { "type": "string", "minLength": 1 }
+        },
+        "required": ["email", "password"]
+      },
+      "AdminUser": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "Admin document ID (Mongo ObjectId string)" },
+          "email": { "type": "string", "format": "email" },
+          "name": { "type": "string" }
+        },
+        "required": ["id", "email", "name"]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" }
+        },
+        "required": ["error"]
+      }
+    },
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "admin_session",
+        "description": "JWT session token, httpOnly, set by /auth/login. Required (implicitly, by the /admin/* proxy) for any admin-protected route."
+      }
+    }
+  }
+}
