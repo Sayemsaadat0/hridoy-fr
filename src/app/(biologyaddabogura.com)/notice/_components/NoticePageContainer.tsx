@@ -121,6 +121,19 @@ const NoticePageContainer = () => {
     }
   };
 
+  const priorityLabels: Record<NoticePriority, string> = {
+    HIGH: "জরুরি",
+    MEDIUM: "মধ্যম",
+    LOW: "সাধারণ",
+  };
+
+  const statusLabels: Record<NoticeStatus, string> = {
+    New: "নতুন",
+    Active: "চলমান",
+    Upcoming: "আসন্ন",
+    Expired: "সমাপ্ত",
+  };
+
   return (
     <div className="relative overflow-hidden">
       {/* Background Effects */}
@@ -137,13 +150,13 @@ const NoticePageContainer = () => {
               className="text-hr-white font-hr-800 mb-6"
               style={{ fontSize: "var(--text-hr-regular-50)" }}
             >
-              <span className="text-hr-green-toxic">Notices</span> & Updates
+              <span className="text-hr-green-toxic">নোটিশ</span> ও আপডেট
             </h1>
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Stay updated with the latest announcements, schedules, and important information.
+              সর্বশেষ ঘোষণা, সিডিউল এবং গুরুত্বপূর্ণ তথ্য জানতে সাথে থাকুন।
             </p>
           </div>
         </div>
@@ -159,9 +172,9 @@ const NoticePageContainer = () => {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-hr-white/10">
-                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>Date</th>
-                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>Title</th>
-                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>Description</th>
+                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>তারিখ</th>
+                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>শিরোনাম</th>
+                        <th className="text-left px-6 py-4 text-hr-white font-hr-600" style={{ fontSize: "var(--text-hr-regular-16)" }}>বিস্তারিত</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -188,12 +201,12 @@ const NoticePageContainer = () => {
                                 <span
                                   className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${getPriorityBadgeColor(notice.priority)}`}
                                 >
-                                  {notice.priority}
+                                  {priorityLabels[notice.priority]}
                                 </span>
                                 <span
                                   className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${getStatusBadgeColor(notice.status)}`}
                                 >
-                                  {notice.status}
+                                  {statusLabels[notice.status]}
                                 </span>
                               </div>
                             </div>
@@ -222,7 +235,7 @@ const NoticePageContainer = () => {
                   className="text-hr-gray font-hr-400"
                   style={{ fontSize: "var(--text-hr-regular-18)" }}
                 >
-                  No notices available at the moment. Check back later for updates.
+                  এই মুহূর্তে কোনো নোটিশ নেই। আপডেটের জন্য পরে আবার দেখুন।
                 </p>
               </div>
             </div>

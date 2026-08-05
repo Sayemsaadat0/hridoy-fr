@@ -14,6 +14,7 @@ export const ROUTES = {
   NOTICE: "/notice",
   COURSE: "/courses",
   GALLERY: "/gallery",
+  ROUTINE: "/routine",
   ADMIN: "/admin",
   ADMIN_LOGIN: "/admin/login",
   ADMIN_PROGRAMS: "/admin/programs",
@@ -71,27 +72,31 @@ export const ADMIN_SIDEBAR_ROUTES = [
 export const site_navigation_items = {
   defaultMenuItems: [
     {
-      label: "Home",
+      label: "হোম",
       href: ROUTES.HOME,
     },
     // {
-    //   label: "Course",
+    //   label: "কোর্স",
     //   href: ROUTES.COURSE,
     // },
     {
-      label: "About",
+      label: "আমাদের সম্পর্কে",
       href: ROUTES.ABOUT,
     },
     {
-      label: "Contact",
+      label: "যোগাযোগ",
       href: ROUTES.CONTACT,
     },
     {
-      label: "Notice",
+      label: "রুটিন",
+      href: ROUTES.ROUTINE,
+    },
+    {
+      label: "নোটিশ",
       href: ROUTES.NOTICE,
     },
     {
-      label: "Gallery",
+      label: "গ্যালারি",
       href: ROUTES.GALLERY,
     },
   ],

@@ -85,7 +85,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             className="flex items-center justify-center gap-2"
             style={{ fontSize: "var(--text-hr-regular-14)" }}
           >
-            Enroll Now
+            ভর্তি হন
             <span className="group-hover/btn:translate-x-1 transition-transform">
               →
             </span>

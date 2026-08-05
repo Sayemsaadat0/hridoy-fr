@@ -14,8 +14,8 @@ import Image from "next/image";
 
 const DefaultFooter = () => {
   const essentialLinks = [
-    { label: "About Us", href: ROUTES.ABOUT },
-    { label: "Contact", href: ROUTES.CONTACT },
+    { label: "আমাদের সম্পর্কে", href: ROUTES.ABOUT },
+    { label: "যোগাযোগ", href: ROUTES.CONTACT },
   ];
 
   const socialLinks = [
@@ -41,29 +41,18 @@ const DefaultFooter = () => {
             {/* Logo and Name */}
             <Image
               src="/logo2.png"
-              alt="Biology Adda Bogura"
+              alt="Ridoy Sir Biology"
               width={200}
               height={100}
             />
-            {/* <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
-                <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
-              </div>
-              <h3
-                className="text-hr-white font-hr-800"
-                style={{ fontSize: "var(--text-hr-regular-24)" }}
-              >
-                Biology Adda Bogura
-              </h3>
-            </div> */}
 
             {/* Tagline */}
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-14)" }}
             >
-              Empowering the next generation of biologists with world-class
-              education and cutting-edge research insights.
+              পরবর্তী প্রজন্মের বায়োলজিস্টদের বিশ্বমানের শিক্ষা ও আধুনিক
+              গবেষণাভিত্তিক জ্ঞান দিয়ে এগিয়ে নিয়ে যাওয়াই আমাদের লক্ষ্য।
             </p>
           </div>
 
@@ -73,7 +62,7 @@ const DefaultFooter = () => {
               className="text-hr-white font-hr-700 mb-4"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Contact
+              যোগাযোগ
             </h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -82,7 +71,7 @@ const DefaultFooter = () => {
                   className="text-hr-gray font-hr-400"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Biology adda Bogura, Near Bogura City College
+                  রিদয় স্যার বায়োলজি, বগুড়া সিটি কলেজের কাছে
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -114,7 +103,7 @@ const DefaultFooter = () => {
               className="text-hr-white font-hr-700 mb-4"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Links
+              লিংক
             </h4>
             <ul className="space-y-3">
               {essentialLinks.map((link) => (
@@ -141,8 +130,8 @@ const DefaultFooter = () => {
               className="text-hr-gray font-hr-400 text-center md:text-left"
               style={{ fontSize: "var(--text-hr-regular-14)" }}
             >
-              © 2025 Biology Adda. All rights reserved. Made with passion for
-              science education.
+              © 2025 Ridoy Sir Biology. All rights reserved. Made with passion
+              for science education.
             </p>
 
             {/* Social Media Icons */}
@@ -172,7 +161,7 @@ const DefaultFooter = () => {
                   className="text-hr-gray font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Trusted by 20K+ Students
+                  ২০ হাজার+ শিক্ষার্থীর আস্থা
                 </span>
               </div>
             </div>

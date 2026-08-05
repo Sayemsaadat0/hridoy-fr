@@ -42,38 +42,36 @@ export function HeroSection() {
               <div className="w-2 h-2 bg-hr-green-toxic rounded-full" />
               <span
                 className="text-hr-green-toxic font-hr-600"
-                style={{ fontSize: "var(--text-hr-regular-14)" }}
+                style={{ fontSize: "var(--font-hr-regular-12)" }}
               >
-                Expert-Led Biology Education
+                অভিজ্ঞ শিক্ষকের তত্ত্বাবধানে বায়োলজি শিক্ষা
               </span>
             </div>
 
             {/* Enhanced Main Heading */}
             <div className="space-y-6 lg:space-y-8">
               <h1 className="text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
-                BIOLOGY
-                <br />
                 <span className="relative inline-block">
                   <span className="text-transparent bg-clip-text bg-linear-to-r from-hr-green-toxic via-hr-green-light to-hr-green-toxic">
-                    ADDA
+                    রিদয় স্যার
                   </span>
-                  <span className="text-hr-white"> BOGURA</span>
-                  {/* <span className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-hr-green-toxic via-hr-green-light to-transparent opacity-50" /> */}
                 </span>
+                <br />
+                <span className="text-hr-white">বায়োলজি</span>
               </h1>
               <p
                 className="text-hr-gray max-w-lg mx-auto lg:mx-0 font-hr-500 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-22)" }}
               >
-                Learn from an experienced instructor with proven expertise
+                প্রমাণিত দক্ষতাসম্পন্ন একজন অভিজ্ঞ শিক্ষকের কাছ থেকে শিখুন
               </p>
               <p
                 className="text-hr-fiord max-w-lg mx-auto lg:mx-0 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
-                Master complex biological concepts through engaging lessons,
-                interactive modules, and personalized guidance from industry
-                experts. Transform your understanding of life sciences.
+                আকর্ষণীয় পাঠ, ইন্টারেক্টিভ মডিউল এবং বিশেষজ্ঞের ব্যক্তিগত
+                দিকনির্দেশনার মাধ্যমে জটিল বায়োলজি ধারণাগুলো আয়ত্ত করুন।
+                জীববিজ্ঞান সম্পর্কে আপনার বোঝাপড়া সম্পূর্ণভাবে বদলে দিন।
               </p>
             </div>
 
@@ -84,7 +82,7 @@ export function HeroSection() {
                   className="px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600"
                   style={{ fontSize: "var(--text-hr-regular-16)" }}
                 >
-                  Enroll Now
+                  ভর্তি হন
                 </button>
               </Link>
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -96,11 +94,11 @@ export function HeroSection() {
                     <div className="w-14 h-14 rounded-full bg-hr-white/5 backdrop-blur-sm border border-hr-white/10 flex items-center justify-center group-hover:bg-hr-green-toxic/10 group-hover:border-hr-green-toxic/30 transition-all">
                       <Play className="w-6 h-6 fill-current ml-1 text-hr-white group-hover:text-hr-green-toxic transition-colors" />
                     </div>
-                    <span className="font-hr-500">Watch Video</span>
+                    <span className="font-hr-500">ভিডিও দেখুন</span>
                   </button>
                 </DialogTrigger>
                 <DialogContent className="min-w-2xl md:min-w-3xl lg:min-w-4xl bg-hr-black border-hr-white/20 p-0">
-                  <DialogTitle className="sr-only">Watch Video</DialogTitle>
+                  <DialogTitle className="sr-only">ভিডিও দেখুন</DialogTitle>
                   <div className="relative w-full aspect-video">
                     <iframe
                       width="100%"
@@ -125,13 +123,13 @@ export function HeroSection() {
                   className="text-hr-white font-hr-800 mb-1 transition-transform group-hover:scale-110"
                   style={{ fontSize: "var(--text-hr-regular-32)" }}
                 >
-                  10K+
+                  ১০ হাজার+
                 </div>
                 <div
                   className="text-hr-fiord font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Students
+                  শিক্ষার্থী
                 </div>
               </div>
               <div className="group">
@@ -146,7 +144,7 @@ export function HeroSection() {
                   className="text-hr-fiord font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Rating
+                  রেটিং
                 </div>
               </div>
               <div className="group">
@@ -154,13 +152,13 @@ export function HeroSection() {
                   className="text-hr-white font-hr-800 mb-1 transition-transform group-hover:scale-110"
                   style={{ fontSize: "var(--text-hr-regular-32)" }}
                 >
-                  50+
+                  ৫০+
                 </div>
                 <div
                   className="text-hr-fiord font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Courses
+                  কোর্স
                 </div>
               </div>
             </div>
@@ -197,7 +195,7 @@ export function HeroSection() {
                     <Image
                       // src="https://media.discordapp.net/attachments/1457987145389314170/1458763109656428656/WhatsApp_Image_2026-01-08_at_16.03.03.jpeg?ex=6960d283&is=695f8103&hm=50a8bd9e8663215f5e27deb90d6b048524f8ef6fe87cf60f889d00681d9b974a&=&format=webp&width=779&height=779"
                       src="/hero2.gif"
-                      alt="Experienced Biology Instructor"
+                      alt="অভিজ্ঞ বায়োলজি শিক্ষক"
                       width={800}
                       height={700}
                       className="w-full h-full object-cover rounded-3xl "
@@ -213,15 +211,14 @@ export function HeroSection() {
                           className="text-hr-white font-hr-700 mb-1"
                           style={{ fontSize: "var(--text-hr-regular-20)" }}
                         >
-                          Ittahadul Islam Ridoy
+                          ইত্তেহাদুল ইসলাম রিদয়
                         </div>
                         <div
                           className="text-hr-gray font-hr-500"
                           style={{ fontSize: "var(--text-hr-regular-14)" }}
                         >
-                          B.Sc Honours (Dept. of Botany) <br />
-                           M.Sc in Industrial
-                          Biotechnology
+                          বি.এসসি (অনার্স) - উদ্ভিদবিজ্ঞান বিভাগ <br />
+                          এম.এসসি - ইন্ডাস্ট্রিয়াল বায়োটেকনোলজি
                         </div>
                       </div>
                     </div>

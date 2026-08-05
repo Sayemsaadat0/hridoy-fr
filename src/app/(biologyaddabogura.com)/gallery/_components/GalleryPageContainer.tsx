@@ -45,158 +45,158 @@ const galleryItems: GalleryItem[] = [
   {
     id: 1,
     src: "/g/1.jpg",
-    title: "Biology Lecture Session",
-    description: "Engaging classroom instruction focusing on fundamental biological principles."
+    title: "বায়োলজি লেকচার সেশন",
+    description: "মৌলিক জৈবিক নীতিগুলোর ওপর আকর্ষণীয় ক্লাসরুম শিক্ষাদান।"
   },
   {
     id: 2,
     src: "/g/2.jpg",
-    title: "Interactive Discussion",
-    description: "Students actively discussing biological theories and scientific concepts."
+    title: "ইন্টারেক্টিভ আলোচনা",
+    description: "জৈবিক তত্ত্ব ও বৈজ্ঞানিক ধারণা নিয়ে শিক্ষার্থীদের সক্রিয় আলোচনা।"
   },
   {
     id: 3,
     src: "/g/3.jpg",
-    title: "Practical Laboratory",
-    description: "Hands-on experimental learning and microscopic analysis of tissues."
+    title: "প্র্যাকটিক্যাল ল্যাবরেটরি",
+    description: "হাতে-কলমে পরীক্ষামূলক শিক্ষা এবং টিস্যুর মাইক্রোস্কোপিক বিশ্লেষণ।"
   },
   {
     id: 4,
     src: "/g/4.jpg",
-    title: "Cell Division Study",
-    description: "Exploring the wonders of mitosis and meiosis under the microscope."
+    title: "কোষ বিভাজন অধ্যয়ন",
+    description: "মাইক্রোস্কোপের নিচে মাইটোসিস ও মিয়োসিসের আশ্চর্য জগৎ অনুসন্ধান।"
   },
   {
     id: 5,
     src: "/g/5.jpg",
-    title: "Student Mentorship",
-    description: "One-on-one student guidance for academic excellence and exam strategies."
+    title: "স্টুডেন্ট মেন্টরশিপ",
+    description: "শিক্ষাগত উৎকর্ষতা ও পরীক্ষার কৌশলে ব্যক্তিগত দিকনির্দেশনা।"
   },
   {
     id: 6,
     src: "/g/6.jpg",
-    title: "Detailed Diagrams",
-    description: "Learning anatomy and complex biological pathways through rich visual aids."
+    title: "বিস্তারিত ডায়াগ্রাম",
+    description: "সমৃদ্ধ ভিজ্যুয়াল উপকরণের মাধ্যমে অ্যানাটমি ও জটিল জৈবিক পথ শেখা।"
   },
   {
     id: 7,
     src: "/g/7.jpg",
-    title: "Exemplary Notes",
-    description: "Structured academic notes prepared to make complex biology topics easy."
+    title: "মানসম্পন্ন নোট",
+    description: "জটিল বায়োলজি টপিক সহজ করার জন্য প্রস্তুত করা সুসংগঠিত নোট।"
   },
   {
     id: 8,
     src: "/g/8.jpg",
-    title: "Dedicated Study Hour",
-    description: "Focus and dedication in the classroom to master difficult biological systems."
+    title: "নিবেদিত পড়ার সময়",
+    description: "কঠিন জৈবিক সিস্টেম আয়ত্ত করতে ক্লাসরুমে একাগ্রতা ও নিষ্ঠা।"
   },
   {
     id: 9,
     src: "/g/9.jpg",
-    title: "Group Learning Session",
-    description: "Collaborative study circles promoting peer learning and mutual support."
+    title: "গ্রুপ লার্নিং সেশন",
+    description: "পারস্পরিক শেখা ও সহযোগিতা বৃদ্ধিতে সম্মিলিত পড়ার আসর।"
   },
   {
     id: 10,
     src: "/g/10.jpg",
-    title: "Weekly Assessment",
-    description: "Regular evaluations to track progress and strengthen conceptual clarity."
+    title: "সাপ্তাহিক মূল্যায়ন",
+    description: "অগ্রগতি পর্যবেক্ষণ ও ধারণাগত স্পষ্টতা বৃদ্ধিতে নিয়মিত মূল্যায়ন।"
   },
   {
     id: 11,
     src: "/g/11.jpg",
-    title: "Anatomy Workshop",
-    description: "Deep dive into human organ systems and physiological functions."
+    title: "অ্যানাটমি ওয়ার্কশপ",
+    description: "মানব অঙ্গ-প্রত্যঙ্গ ও শারীরবৃত্তীয় কার্যকারিতার গভীর পাঠ।"
   },
   {
     id: 12,
     src: "/g/12.jpg",
-    title: "Microscope Investigation",
-    description: "Examining plant tissues, cell structure, and cellular dynamics."
+    title: "মাইক্রোস্কোপ পরীক্ষা",
+    description: "উদ্ভিদ টিস্যু, কোষের গঠন এবং কোষীয় গতিবিদ্যা পরীক্ষা।"
   },
   {
     id: 13,
     src: "/g/13.jpg",
-    title: "Doubt Clearing Session",
-    description: "Personalized attention to resolve questions and clarify tricky syllabus topics."
+    title: "সন্দেহ নিরসন সেশন",
+    description: "প্রশ্নের সমাধান এবং সিলেবাসের কঠিন টপিক স্পষ্ট করতে ব্যক্তিগত মনোযোগ।"
   },
   {
     id: 15,
     src: "/g/15.jpg",
-    title: "Board Exam Preparation",
-    description: "Targeted strategy and intensive review classes for major biology examinations."
+    title: "বোর্ড পরীক্ষার প্রস্তুতি",
+    description: "গুরুত্বপূর্ণ বায়োলজি পরীক্ষার জন্য নির্দিষ্ট কৌশল ও নিবিড় রিভিউ ক্লাস।"
   },
   {
     id: 16,
     src: "/g/16.jpg",
-    title: "Interactive Slide Presentation",
-    description: "Utilizing modern visual technology to make complex processes digestible."
+    title: "ইন্টারেক্টিভ স্লাইড উপস্থাপনা",
+    description: "জটিল প্রক্রিয়া সহজবোধ্য করতে আধুনিক ভিজ্যুয়াল প্রযুক্তির ব্যবহার।"
   },
   {
     id: 17,
     src: "/g/17.jpg",
-    title: "Genetics & Heredity Class",
-    description: "Understanding DNA structure, inheritance patterns, and modern genetic codes."
+    title: "জেনেটিক্স ও বংশগতি ক্লাস",
+    description: "DNA গঠন, বংশগতির ধারা এবং আধুনিক জেনেটিক কোড বোঝা।"
   },
   {
     id: 18,
     src: "/g/18.jpg",
-    title: "Plant Kingdom Exploration",
-    description: "Studying the diversity, classification, and anatomy of flora."
+    title: "উদ্ভিদ জগৎ অনুসন্ধান",
+    description: "উদ্ভিদের বৈচিত্র্য, শ্রেণিবিন্যাস এবং অ্যানাটমি অধ্যয়ন।"
   },
   {
     id: 19,
     src: "/g/19.jpg",
-    title: "Peer-to-Peer Interaction",
-    description: "Exchanging ideas and solutions to boost cooperative academic intelligence."
+    title: "পিয়ার-টু-পিয়ার ইন্টারঅ্যাকশন",
+    description: "সহযোগিতামূলক শিক্ষাগত বুদ্ধিমত্তা বাড়াতে ধারণা ও সমাধানের আদান-প্রদান।"
   },
   {
     id: 20,
     src: "/g/20.jpg",
-    title: "Concept Mapping",
-    description: "Visualizing relationships between complex ecological and biological systems."
+    title: "কনসেপ্ট ম্যাপিং",
+    description: "জটিল ইকোলজিক্যাল ও জৈবিক সিস্টেমের সম্পর্ক ভিজ্যুয়ালাইজ করা।"
   },
   {
     id: 21,
     src: "/g/21.jpg",
-    title: "Academic Achievement",
-    description: "Celebrating milestones, high scores, and exceptional student performances."
+    title: "শিক্ষাগত সাফল্য",
+    description: "মাইলফলক, উচ্চ স্কোর এবং শিক্ষার্থীদের অসাধারণ পারফরম্যান্স উদযাপন।"
   },
   {
     id: 22,
     src: "/g/22.jpg",
-    title: "Revision Worksheets",
-    description: "Solving comprehensive practice sheets designed for robust exam readiness."
+    title: "রিভিশন ওয়ার্কশিট",
+    description: "পরীক্ষার পূর্ণাঙ্গ প্রস্তুতির জন্য অনুশীলনী শিট সমাধান।"
   },
   {
     id: 23,
     src: "/g/23.jpg",
-    title: "Olympiad Preparation",
-    description: "Advanced learning modules for competitive biological science exams."
+    title: "অলিম্পিয়াড প্রস্তুতি",
+    description: "প্রতিযোগিতামূলক বায়োলজি পরীক্ষার জন্য উন্নত শিক্ষা মডিউল।"
   },
   {
     id: 24,
     src: "/g/24.jpg",
-    title: "Active Q&A Session",
-    description: "Lively interaction and fast-paced questioning to keep students sharp."
+    title: "সক্রিয় প্রশ্নোত্তর সেশন",
+    description: "শিক্ষার্থীদের সতর্ক রাখতে প্রাণবন্ত ও দ্রুতগতির প্রশ্নোত্তর।"
   },
   {
     id: 25,
     src: "/g/25.jpg",
-    title: "Laboratory Best Practices",
-    description: "Learning safety, precision, and the correct handling of scientific apparatus."
+    title: "ল্যাবরেটরি সেরা অনুশীলন",
+    description: "বৈজ্ঞানিক যন্ত্রপাতির নিরাপত্তা, সতর্কতা ও সঠিক ব্যবহার শেখা।"
   },
   {
     id: 26,
     src: "/g/26.jpg",
-    title: "Daily Assessment Feedback",
-    description: "Individual feedback on quizzes to pinpoint and build up weak areas."
+    title: "দৈনিক মূল্যায়ন ফিডব্যাক",
+    description: "দুর্বল বিষয়গুলো চিহ্নিত ও উন্নত করতে কুইজের ওপর ব্যক্তিগত ফিডব্যাক।"
   },
   {
     id: 27,
     src: "/g/27.jpg",
-    title: "Biology Adda Success",
-    description: "Empowering next-generation learners to achieve their medical and science dreams."
+    title: "রিদয় স্যার বায়োলজির সাফল্য",
+    description: "পরবর্তী প্রজন্মের শিক্ষার্থীদের মেডিকেল ও বিজ্ঞানের স্বপ্ন পূরণে সহায়তা।"
   }
 ];
 
@@ -210,11 +210,11 @@ const GalleryPageContainer = () => {
         className="text-center mb-12 lg:mb-16"
       >
         <h1 className="text-hr-regular-32 md:text-hr-regular-48 text-hr-white font-hr-800 mb-4">
-          Our <span className="text-hr-green-toxic">Gallery</span>
+          আমাদের <span className="text-hr-green-toxic">গ্যালারি</span>
         </h1>
         <p className="text-hr-fiord max-w-2xl mx-auto font-hr-500">
-          Explore moments from our biology education journey. Click on any
-          image to view it in high resolution.
+          আমাদের বায়োলজি শিক্ষার যাত্রার মুহূর্তগুলো দেখুন। হাই রেজোলিউশনে
+          দেখতে কোনো ছবিতে ক্লিক করুন।
         </p>
       </motion.div>
 

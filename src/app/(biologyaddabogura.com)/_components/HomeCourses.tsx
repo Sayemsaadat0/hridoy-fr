@@ -9,13 +9,13 @@ const HomeCourses = () => {
   const courses: Course[] = [
     {
       id: "1",
-      title: "Biology Adda Bogura - Free Class 2026",
+      title: "রিদয় স্যার বায়োলজি - ফ্রি ক্লাস ২০২৬",
       description:
-        "দ্রুতা প্রদান ও চলন - ৯ ",
+        "নবম শ্রেণির শিক্ষার্থীদের জন্য বিশেষ ফ্রি ক্লাস।",
       thumbnail:
         "/p/12.png",
       level: "Intermediate",
-      duration: "2 weeks",
+      duration: "২ সপ্তাহ",
       enrollmentCount: null,
     },
     // {
@@ -59,7 +59,7 @@ const HomeCourses = () => {
                   className="text-hr-green-toxic font-hr-600"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Our Programs
+                  আমাদের প্রোগ্রাম
                 </span>
               </div>
             </div>
@@ -67,14 +67,13 @@ const HomeCourses = () => {
             {/* Heading */}
             <div>
               <h2 className=" mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
-                Top Rated <span className="text-hr-green-toxic">Programs</span>
+                রেটেড <span className="text-hr-green-toxic">প্রোগ্রাম</span>
               </h2>
               <p
                 className="text-hr-gray max-w-2xl mx-auto font-hr-500 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-18)" }}
               >
-                Explore our most popular courses designed by experts to help you
-                master biology.
+                বিশেষজ্ঞদের ডিজাইন করা আমাদের সবচেয়ে জনপ্রিয় কোর্সগুলো দেখুন।
               </p>
             </div>
           </div>

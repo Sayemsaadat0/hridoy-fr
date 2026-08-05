@@ -33,22 +33,11 @@ const DefaultNavbar = () => {
             style={{ fontSize: "var(--text-hr-regular-24)" }}
           >
             <Image
-              src="/logo2.png"
-              alt="Biology Adda Bogura"
+              src="/admin_logo1.png"
+              alt="Ridoy Sir Biology"
               width={200}
               height={100}
             />
-            {/* <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-hr-green-toxic rounded-lg flex items-center justify-center">
-                <div className="w-6 h-6 bg-hr-green-dark rounded-sm" />
-              </div>
-              <h3
-                className="text-hr-white font-hr-800"
-                style={{ fontSize: "var(--text-hr-regular-24)" }}
-              >
-                Biology Adda Bogura
-              </h3>
-            </div> */}
           </Link>
 
           {/* Desktop Menu */}
@@ -84,7 +73,7 @@ const DefaultNavbar = () => {
               <SheetTrigger asChild>
                 <button
                   className="text-hr-white hover:text-hr-catskill-white transition-colors p-2"
-                  aria-label="Open menu"
+                  aria-label="মেনু খুলুন"
                 >
                   <Menu className="size-6" />
                 </button>

@@ -39,7 +39,7 @@ const HomeAbout = () => {
               className="text-hr-green-toxic font-hr-600"
               style={{ fontSize: "var(--text-hr-regular-14)" }}
             >
-              About Us
+              আমাদের সম্পর্কে
             </span>
           </div>
         </div>
@@ -47,15 +47,15 @@ const HomeAbout = () => {
         {/* Main Heading */}
         <div className="mb-12 lg:mb-16 text-center">
           <h2 className=" mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
-            Empowering Future{" "}
-            <span className="text-hr-green-toxic">Biologists</span>
+            ভবিষ্যতের{" "}
+            <span className="text-hr-green-toxic">বায়োলজিস্ট</span> গড়ে তোলা
           </h2>
           <p
             className="text-hr-gray max-w-2xl mx-auto font-hr-500 leading-relaxed"
             style={{ fontSize: "var(--text-hr-regular-18)" }}
           >
-            We&apos;re dedicated to making biology education accessible,
-            engaging, and effective for students at all levels.
+            সকল স্তরের শিক্ষার্থীদের জন্য বায়োলজি শিক্ষাকে সহজলভ্য, আকর্ষণীয়
+            এবং কার্যকর করাই আমাদের লক্ষ্য।
           </p>
         </div>
 
@@ -93,7 +93,7 @@ const HomeAbout = () => {
                   >
                     <Image
                       src={images[currentIndex]}
-                      alt={`Biology Laboratory slide ${currentIndex + 1}`}
+                      alt={`বায়োলজি ল্যাবরেটরি স্লাইড ${currentIndex + 1}`}
                       fill
                       className="object-cover"
                       priority={currentIndex === 0}
@@ -109,13 +109,13 @@ const HomeAbout = () => {
                         className="text-hr-green-toxic font-hr-800 mb-1"
                         style={{ fontSize: "var(--text-hr-regular-32)" }}
                       >
-                        6+
+                        ৬+
                       </div>
                       <div
                         className="text-hr-white font-hr-500"
                         style={{ fontSize: "var(--text-hr-regular-14)" }}
                       >
-                        Years of Excellence
+                        বছরের অভিজ্ঞতা
                       </div>
                     </div>
                   </div>
@@ -132,7 +132,7 @@ const HomeAbout = () => {
                           ? "w-6 bg-hr-green-toxic"
                           : "w-2 bg-hr-white/40 hover:bg-hr-white/60"
                       }`}
-                      aria-label={`Go to slide ${index + 1}`}
+                      aria-label={`স্লাইড ${index + 1} এ যান`}
                     />
                   ))}
                 </div>
@@ -147,25 +147,25 @@ const HomeAbout = () => {
                 className="text-hr-white font-hr-700 mb-6"
                 style={{ fontSize: "var(--text-hr-regular-30)" }}
               >
-                Where Science Meets Passion
+                যেখানে বিজ্ঞান মিলিত হয় ভালোবাসার সাথে
               </h3>
               <p
                 className="text-hr-gray font-hr-400 leading-relaxed mb-6"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
-                Biology Adda was founded with a simple mission: to transform the
-                way students learn and understand biology. Our expert-led
-                courses combine cutting-edge research with practical
-                applications, ensuring you gain both theoretical knowledge and
-                real-world skills.
+                রিদয় স্যার বায়োলজি প্রতিষ্ঠিত হয়েছিল একটি সহজ লক্ষ্য নিয়ে:
+                শিক্ষার্থীরা যেভাবে বায়োলজি শেখে ও বোঝে তা বদলে দেওয়া। আমাদের
+                বিশেষজ্ঞ-পরিচালিত কোর্সগুলো আধুনিক গবেষণা ও বাস্তবিক প্রয়োগকে
+                একসাথে নিয়ে আসে, যাতে আপনি তাত্ত্বিক জ্ঞান ও বাস্তব দক্ষতা
+                দুটোই অর্জন করতে পারেন।
               </p>
               <p
                 className="text-hr-fiord font-hr-400 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
-                With a team of experienced educators, researchers, and industry
-                professionals, we&apos;ve helped thousands of students achieve
-                their academic and career goals in biological sciences.
+                অভিজ্ঞ শিক্ষক, গবেষক এবং বিশেষজ্ঞদের একটি দল নিয়ে, আমরা হাজার
+                হাজার শিক্ষার্থীকে তাদের শিক্ষাগত ও ক্যারিয়ার লক্ষ্য পূরণে
+                সাহায্য করেছি জীববিজ্ঞান বিষয়ে।
               </p>
             </div>
 
@@ -176,13 +176,13 @@ const HomeAbout = () => {
                   className="text-hr-green-toxic font-hr-800 mb-1 transition-transform group-hover:scale-110"
                   style={{ fontSize: "var(--text-hr-regular-32)" }}
                 >
-                  98%
+                  ৯৮%
                 </div>
                 <div
                   className="text-hr-white font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Student Satisfaction
+                  শিক্ষার্থী সন্তুষ্টি
                 </div>
               </div>
               <div className="group">
@@ -190,13 +190,13 @@ const HomeAbout = () => {
                   className="text-hr-green-toxic font-hr-800 mb-1 transition-transform group-hover:scale-110"
                   style={{ fontSize: "var(--text-hr-regular-32)" }}
                 >
-                  20K+
+                  ২০ হাজার+
                 </div>
                 <div
                   className="text-hr-white font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  Students Enrolled Since 2018
+                  ২০১৮ সাল থেকে ভর্তি হওয়া শিক্ষার্থী
                 </div>
               </div>
             </div>
