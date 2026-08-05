@@ -12,21 +12,21 @@ import { cn } from "@/lib/utils";
 const faqData = [
   {
     id: "1",
-    question: "Where is the location and contact info?",
+    question: "লোকেশন ও যোগাযোগের তথ্য কোথায় পাব?",
     answer:
-      "Biology adda Bogura is located near Bogura City College. You can reach us at phone: 01518390674 or email: info@biologyaddabogura.com. Visit our contact page for more details and directions.",
+      "রিদয় স্যার বায়োলজি বগুড়া সিটি কলেজের কাছে অবস্থিত। আমাদের সাথে যোগাযোগ করতে পারেন ফোনে: ০১৫১৮৩৯০৬৭৪ অথবা ইমেইলে: info@biologyaddabogura.com। আরও বিস্তারিত ও দিকনির্দেশনার জন্য আমাদের যোগাযোগ পেজ দেখুন।",
   },
   {
     id: "2",
-    question: "What courses are running right now? What sector do we cover?",
+    question: "এখন কী কী কোর্স চলছে? আমরা কোন কোন সেক্টর কভার করি?",
     answer:
-      "We currently offer courses for Inter 1st Year, Inter 2nd Year, Class 9-10 Biology, and Admission preparation. Our comprehensive curriculum covers all major biology topics to help students excel in their academic journey.",
+      "আমরা বর্তমানে ইন্টার ১ম বর্ষ, ইন্টার ২য় বর্ষ, ৯ম-১০ম শ্রেণির বায়োলজি এবং ভর্তি পরীক্ষার প্রস্তুতির কোর্স অফার করি। আমাদের পূর্ণাঙ্গ কারিকুলাম বায়োলজির সকল গুরুত্বপূর্ণ টপিক কভার করে, যা শিক্ষার্থীদের শিক্ষাজীবনে এগিয়ে থাকতে সাহায্য করে।",
   },
   {
     id: "3",
-    question: "What educational levels do you cover?",
+    question: "কোন কোন শিক্ষাস্তর কভার করা হয়?",
     answer:
-      "We cover Inter 1st Year, Inter 2nd Year, Class 9-10 Biology, and Admission preparation courses. Our expert tutoring helps students at all these levels master biology concepts and achieve their academic goals.",
+      "আমরা ইন্টার ১ম বর্ষ, ইন্টার ২য় বর্ষ, ৯ম-১০ম শ্রেণির বায়োলজি এবং ভর্তি পরীক্ষার প্রস্তুতির কোর্স কভার করি। আমাদের বিশেষজ্ঞ শিক্ষাদান এই সকল স্তরের শিক্ষার্থীদের বায়োলজির ধারণা আয়ত্ত করতে ও শিক্ষাগত লক্ষ্য পূরণে সাহায্য করে।",
   },
 ];
 
@@ -48,7 +48,7 @@ const HomeFAQ = () => {
                     className="text-hr-green-toxic font-hr-600"
                     style={{ fontSize: "var(--text-hr-regular-14)" }}
                   >
-                    FAQ
+                    সচরাচর জিজ্ঞাসা
                   </span>
                 </div>
               </div>
@@ -56,15 +56,14 @@ const HomeFAQ = () => {
               {/* Heading */}
               <div>
                 <h2 className=" mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
-                  Frequently Asked{" "}
-                  <span className="text-hr-green-toxic">Questions</span>
+                  <span className="text-hr-green-toxic">FAQ</span>
                 </h2>
                 <p
                   className="text-hr-gray lg:max-w-lg font-hr-500 leading-relaxed"
                   style={{ fontSize: "var(--text-hr-regular-18)" }}
                 >
-                  Find answers to common questions about our courses, enrollment
-                  process, and learning experience.
+                  আমাদের কোর্স, ভর্তি প্রক্রিয়া এবং শেখার অভিজ্ঞতা সম্পর্কে
+                  জেনে নিন।
                 </p>
               </div>
             </div>

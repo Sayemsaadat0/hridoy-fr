@@ -44,7 +44,7 @@ const ContactPageContainer = () => {
     console.log("Form submitted:", formData);
     
     // Show success toast
-    toast.success("Message sent successfully! We'll get back to you soon.");
+    toast.success("বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।");
     
     // Reset form
     setFormData({
@@ -99,8 +99,8 @@ const ContactPageContainer = () => {
 
   // Single location details
   const location = {
-    name: "Biology adda Bogura",
-    address: "Near Bogura City College",
+    name: "রিদয় স্যার বায়োলজি",
+    address: "বগুড়া সিটি কলেজের কাছে",
     phone: "01518390674",
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d640.0361150940422!2d89.37502741344126!3d24.84365631153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fc55c94cdd406f%3A0x9cd198efb4bb8937!2sBiology%20adda%20Bogura!5e0!3m2!1sen!2sbd!4v1767867879841!5m2!1sen!2sbd",
   };
@@ -121,13 +121,13 @@ const ContactPageContainer = () => {
               className="text-hr-white font-hr-800 "
               style={{ fontSize: "var(--text-hr-regular-50)" }}
             >
-              <span className="text-hr-green-toxic">Contact</span> Us
+              <span className="text-hr-green-toxic">যোগাযোগ</span> করুন
             </h1>
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              Get in touch with us. We&apos;d love to hear from you.
+              আমাদের সাথে যোগাযোগ করুন। আপনার কাছ থেকে শুনতে আমরা উদগ্রীব।
             </p>
           </div>
         </div>
@@ -151,7 +151,7 @@ const ContactPageContainer = () => {
                 className="text-hr-white font-hr-800 mb-8"
                 style={{ fontSize: "var(--text-hr-regular-40)" }}
               >
-                Get in <span className="text-hr-green-toxic">Touch</span>
+                যোগাযোগ <span className="text-hr-green-toxic">করুন</span>
               </h2>
                 {/* Location */}
                 <div className="rounded-2xl border border-hr-white/15 bg-hr-black/50 backdrop-blur-sm p-6">
@@ -194,7 +194,7 @@ const ContactPageContainer = () => {
                         className="text-hr-gray font-hr-400"
                         style={{ fontSize: "var(--text-hr-regular-14)" }}
                       >
-                        TALK TO AN EXPERT
+                        বিশেষজ্ঞের সাথে কথা বলুন
                       </p>
                     </div>
                   </div>
@@ -218,7 +218,7 @@ const ContactPageContainer = () => {
                         className="text-hr-gray font-hr-400"
                         style={{ fontSize: "var(--text-hr-regular-14)" }}
                       >
-                        SEND AN EMAIL
+                        ইমেইল করুন
                       </p>
                     </div>
                   </div>
@@ -235,13 +235,13 @@ const ContactPageContainer = () => {
                         className="text-hr-white font-hr-700 mb-1"
                         style={{ fontSize: "var(--text-hr-regular-18)" }}
                       >
-                        Mon - Fri: 9:00am - 7:00pm
+                        শনি - বৃহস্পতি: সকাল ৯টা - সন্ধ্যা ৭টা
                       </p>
                       <p
                         className="text-hr-gray font-hr-400"
                         style={{ fontSize: "var(--text-hr-regular-14)" }}
                       >
-                        BUSINESS HOUR
+                        অফিস সময়
                       </p>
                     </div>
                   </div>
@@ -282,7 +282,7 @@ const ContactPageContainer = () => {
                 className="text-hr-white font-hr-800 mb-8"
                 style={{ fontSize: "var(--text-hr-regular-40)" }}
               >
-                Send us a <span className="text-hr-green-toxic">message</span>
+                আমাদের <span className="text-hr-green-toxic">বার্তা পাঠান</span>
               </h2>
               <div className="rounded-3xl border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm p-8 lg:p-10 shadow-xl">
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -294,7 +294,7 @@ const ContactPageContainer = () => {
                         className="text-hr-white font-hr-600 uppercase"
                         style={{ fontSize: "var(--text-hr-regular-12)" }}
                       >
-                        First Name
+                        নামের প্রথম অংশ
                       </Label>
                       <Input
                         id="firstName"
@@ -304,7 +304,7 @@ const ContactPageContainer = () => {
                         value={formData.firstName}
                         onChange={handleChange}
                         className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="FIRST NAME"
+                        placeholder="নামের প্রথম অংশ"
                       />
                     </div>
                     <div className="space-y-2">
@@ -313,7 +313,7 @@ const ContactPageContainer = () => {
                         className="text-hr-white font-hr-600 uppercase"
                         style={{ fontSize: "var(--text-hr-regular-12)" }}
                       >
-                        Last Name
+                        নামের শেষ অংশ
                       </Label>
                       <Input
                         id="lastName"
@@ -323,7 +323,7 @@ const ContactPageContainer = () => {
                         value={formData.lastName}
                         onChange={handleChange}
                         className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="LAST NAME"
+                        placeholder="নামের শেষ অংশ"
                       />
                     </div>
                   </div>
@@ -336,7 +336,7 @@ const ContactPageContainer = () => {
                         className="text-hr-white font-hr-600 uppercase"
                         style={{ fontSize: "var(--text-hr-regular-12)" }}
                       >
-                        Email Address
+                        ইমেইল ঠিকানা
                       </Label>
                       <Input
                         id="email"
@@ -346,7 +346,7 @@ const ContactPageContainer = () => {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="EMAIL ADDRESS"
+                        placeholder="ইমেইল ঠিকানা"
                       />
                     </div>
                     <div className="space-y-2">
@@ -355,7 +355,7 @@ const ContactPageContainer = () => {
                         className="text-hr-white font-hr-600 uppercase"
                         style={{ fontSize: "var(--text-hr-regular-12)" }}
                       >
-                        Phone Number
+                        ফোন নম্বর
                       </Label>
                       <Input
                         id="phone"
@@ -365,7 +365,7 @@ const ContactPageContainer = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="PHONE NUMBER"
+                        placeholder="ফোন নম্বর"
                       />
                     </div>
                   </div>
@@ -377,7 +377,7 @@ const ContactPageContainer = () => {
                       className="text-hr-white font-hr-600 uppercase"
                       style={{ fontSize: "var(--text-hr-regular-12)" }}
                     >
-                      Subject
+                      বিষয়
                     </Label>
                     <Input
                       id="subject"
@@ -387,7 +387,7 @@ const ContactPageContainer = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                      placeholder="SUBJECT"
+                      placeholder="বিষয়"
                     />
                   </div>
 
@@ -398,7 +398,7 @@ const ContactPageContainer = () => {
                       className="text-hr-white font-hr-600 uppercase"
                       style={{ fontSize: "var(--text-hr-regular-12)" }}
                     >
-                      Details
+                      বিস্তারিত
                     </Label>
                     <Textarea
                       id="details"
@@ -408,7 +408,7 @@ const ContactPageContainer = () => {
                       onChange={handleChange}
                       rows={6}
                       className="w-full bg-hr-black/50 min-h-40 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 resize-none transition-all"
-                      placeholder="DETAILS"
+                      placeholder="বিস্তারিত লিখুন"
                     />
                   </div>
 
@@ -418,7 +418,7 @@ const ContactPageContainer = () => {
                     className="w-full px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600 flex items-center justify-center gap-2"
                     style={{ fontSize: "var(--text-hr-regular-16)" }}
                   >
-                    SUBMIT
+                    পাঠান
                     <Send className="w-5 h-5" />
                   </button>
                 </form>

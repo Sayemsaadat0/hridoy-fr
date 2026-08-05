@@ -21,40 +21,40 @@ interface ClassSchedule {
 
 const routineData: ClassSchedule[] = [
   {
-    classTitle: "Class 09",
+    classTitle: "নবম শ্রেণি",
     iconType: "book",
     scheduleGroups: [
       {
-        days: "Sat, Mon, Wed",
+        days: "শনি, সোম, বুধ",
         timeSlots: [
-          { time: "8:00 AM - 9:00 AM", variant: "blue" },
-          { time: "10:00 AM - 11:00 AM", variant: "blue" },
+          { time: "সকাল ৮:০০ - ৯:০০", variant: "blue" },
+          { time: "সকাল ১০:০০ - ১১:০০", variant: "blue" },
         ],
       },
       {
-        days: "Sun, Tue, Thu",
+        days: "রবি, মঙ্গল, বৃহস্পতি",
         timeSlots: [
-          { time: "6:00 PM - 7:00 PM", variant: "rose" },
+          { time: "সন্ধ্যা ৬:০০ - ৭:০০", variant: "rose" },
         ],
       },
     ],
   },
   {
-    classTitle: "Class 10",
+    classTitle: "দশম শ্রেণি",
     iconType: "graduation",
     scheduleGroups: [
       {
-        days: "Sat, Mon, Wed",
+        days: "শনি, সোম, বুধ",
         timeSlots: [
-          { time: "9:00 AM - 10:00 AM", variant: "blue" },
-          { time: "4:00 PM - 5:00 PM", variant: "teal" },
-          { time: "6:00 PM - 7:00 PM", variant: "rose" },
+          { time: "সকাল ৯:০০ - ১০:০০", variant: "blue" },
+          { time: "বিকাল ৪:০০ - ৫:০০", variant: "teal" },
+          { time: "সন্ধ্যা ৬:০০ - ৭:০০", variant: "rose" },
         ],
       },
       {
-        days: "Sun, Tue, Thu",
+        days: "রবি, মঙ্গল, বৃহস্পতি",
         timeSlots: [
-          { time: "8:00 AM - 9:00 AM", variant: "blue" },
+          { time: "সকাল ৮:০০ - ৯:০০", variant: "blue" },
         ],
       },
     ],
@@ -100,17 +100,17 @@ const ClassRoutine = () => {
               className="text-hr-green-toxic font-hr-600 tracking-wider uppercase"
               style={{ fontSize: "var(--text-hr-regular-12)" }}
             >
-              Class Schedule
+              ক্লাস সিডিউল
             </span>
           </div>
           <h2 className="mb-4 text-hr-regular-32 md:text-hr-regular-60 text-hr-white tracking-tight leading-[0.95] font-hr-800">
-            Weekly <span className="text-hr-green-toxic">Routine</span>
+            সাপ্তাহিক <span className="text-hr-green-toxic">রুটিন</span>
           </h2>
           <p
             className="text-hr-gray max-w-2xl mx-auto font-hr-500 leading-relaxed"
             style={{ fontSize: "var(--text-hr-regular-18)" }}
           >
-            Check out the weekly class schedules for Class 9 and Class 10 biology classes.
+            নবম ও দশম শ্রেণির বায়োলজি ক্লাসের সাপ্তাহিক সিডিউল দেখে নিন।
           </p>
         </div>
 
