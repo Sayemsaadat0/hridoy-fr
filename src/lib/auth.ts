@@ -1,13 +1,15 @@
 import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 import { env } from "@/lib/env";
+import type { UserRole } from "@/models/user.model";
 
-export const AUTH_COOKIE_NAME = "admin_session";
+export const AUTH_COOKIE_NAME = "session";
 const SESSION_DURATION_SECONDS = 60 * 60 * 8; // 8 hours
 
 export interface SessionPayload extends JWTPayload {
   sub: string;
   email: string;
   name: string;
+  role: UserRole;
   tokenVersion: number;
 }
 
@@ -47,7 +49,7 @@ export function getCookieToken(request: Request): string | null {
   return match?.slice(AUTH_COOKIE_NAME.length + 1) || null;
 }
 
-/** Bearer header takes precedence so API/Postman clients can override a stale cookie. */
+/** Bearer header takes precedence so API clients can override a stale cookie. */
 export function getRequestToken(request: Request): string | null {
   return getBearerToken(request) ?? getCookieToken(request);
 }

@@ -1,21 +1,14 @@
-import { getRequestToken } from "@/lib/auth";
-import { verifyCurrentSession } from "@/lib/session";
-import { fail, ok } from "@/lib/api-response";
+import { requireAuth } from "@/lib/require-auth";
+import { ok } from "@/lib/api-response";
 
 export async function GET(request: Request) {
-  const token = getRequestToken(request);
-  if (!token) {
-    return fail("Not authenticated", 401);
-  }
-
-  const session = await verifyCurrentSession(token);
-  if (!session) {
-    return fail("Not authenticated", 401);
-  }
+  const auth = await requireAuth(request);
+  if (!auth.session) return auth.error;
 
   return ok({
-    id: session.sub,
-    email: session.email,
-    name: session.name,
+    id: auth.session.sub,
+    email: auth.session.email,
+    name: auth.session.name,
+    role: auth.session.role,
   });
 }

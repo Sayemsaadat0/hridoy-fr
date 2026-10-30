@@ -40,7 +40,7 @@ const DefaultFooter = () => {
           <div className="space-y-6">
             {/* Logo and Name */}
             <Image
-              src="/logo2.png"
+              src="/admin_logo1.png"
               alt="Ridoy Sir Biology"
               width={200}
               height={100}

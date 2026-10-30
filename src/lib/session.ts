@@ -1,25 +1,29 @@
 import { connectDB } from "@/lib/db";
-import { Admin } from "@/models/admin.model";
+import { User } from "@/models/user.model";
 import { type SessionPayload, verifySessionToken } from "@/lib/auth";
 
 /**
  * Node-runtime only (uses mongoose) — do not import from middleware.ts.
  * Verifies JWT signature/expiry AND that it hasn't been revoked by a later
- * logout (tokenVersion bump). This is what actually makes logout effective
- * for tokens held outside the cookie (e.g. an Authorization header).
+ * logout (tokenVersion bump).
  */
 export async function verifyCurrentSession(token: string): Promise<SessionPayload | null> {
   const session = await verifySessionToken(token);
   if (!session) return null;
 
   await connectDB();
-  const admin = await Admin.findById(session.sub).select("tokenVersion");
-  if (!admin || admin.tokenVersion !== session.tokenVersion) return null;
+  const user = await User.findById(session.sub).select("tokenVersion role email name");
+  if (!user || user.tokenVersion !== session.tokenVersion) return null;
 
-  return session;
+  return {
+    ...session,
+    email: user.email,
+    name: user.name,
+    role: user.role,
+  };
 }
 
-export async function revokeAdminSessions(adminId: string): Promise<void> {
+export async function revokeUserSessions(userId: string): Promise<void> {
   await connectDB();
-  await Admin.findByIdAndUpdate(adminId, { $inc: { tokenVersion: 1 } });
+  await User.findByIdAndUpdate(userId, { $inc: { tokenVersion: 1 } });
 }

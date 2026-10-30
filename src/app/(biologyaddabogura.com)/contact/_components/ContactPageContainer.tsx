@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
+import { apiRequest } from "@/lib/api-client";
 
 const ContactPageContainer = () => {
   const [formData, setFormData] = useState({
@@ -38,23 +39,37 @@ const ContactPageContainer = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    
-    // Show success toast
-    toast.success("বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।");
-    
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      subject: "",
-      details: "",
-    });
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      await apiRequest("/api/contacts", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      toast.success("বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        details: "",
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      toast.error(
+        message.startsWith("phone")
+          ? "সঠিক মোবাইল নম্বর দিন (যেমন 01XXXXXXXXX)।"
+          : "বার্তা পাঠানো যায়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Multiple locations - commented out for now
@@ -415,10 +430,11 @@ const ContactPageContainer = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="w-full px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600 flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
                     style={{ fontSize: "var(--text-hr-regular-16)" }}
                   >
-                    পাঠান
+                    {isSubmitting ? "পাঠানো হচ্ছে…" : "পাঠান"}
                     <Send className="w-5 h-5" />
                   </button>
                 </form>
