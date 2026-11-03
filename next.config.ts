@@ -2,14 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Only optimize images from our ImageKit account; an open "**" pattern would let
-    // anyone use this server as a free image proxy.
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "ik.imagekit.io",
-      },
-    ],
+    // Resizing is done by ImageKit via a custom loader, so Vercel Image Optimization
+    // (and its usage quota) is not used. See src/lib/image-loader.ts.
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
   },
   outputFileTracingIncludes: {
     "/docs": ["./node_modules/swagger-ui-dist/**/*"],

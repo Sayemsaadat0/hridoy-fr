@@ -6,13 +6,13 @@ import { requireAdmin } from "@/lib/require-auth";
 import { fail, ok, okMessage } from "@/lib/api-response";
 import { escapeRegex, formatZodError, listContentQuerySchema } from "@/lib/validation/common";
 import { deleteImage, ImageUploadError, MAX_IMAGE_BYTES, uploadImage } from "@/lib/image-storage";
+import { NEWEST_FIRST } from "@/lib/queries/sort";
 
-interface OrderedContentDocument extends Document {
-  order: number;
+interface PublishableContentDocument extends Document {
   isPublished: boolean;
 }
 
-interface ContentRoutesConfig<TDoc extends OrderedContentDocument, TPublic> {
+interface ContentRoutesConfig<TDoc extends PublishableContentDocument, TPublic> {
   /** Singular, user-facing name used in messages, e.g. "Program". */
   label: string;
   model: Model<TDoc>;
@@ -71,14 +71,14 @@ async function readBody(request: Request): Promise<ParsedBody> {
 }
 
 /**
- * Route handlers for admin-managed content that the public site lists in a manual
- * `order`, with drafts hidden from non-admins. Used by programs, FAQs and gallery.
+ * Route handlers for admin-managed content that the public site lists newest first,
+ * with drafts hidden from non-admins. Used by programs, FAQs, gallery and routines.
  *
  *   const routes = createContentRoutes({ ... });
  *   export const { GET, POST } = routes.collection;   // app/api/<x>/route.ts
  *   export const { GET, PATCH, DELETE } = routes.item; // app/api/<x>/[id]/route.ts
  */
-export function createContentRoutes<TDoc extends OrderedContentDocument, TPublic>(
+export function createContentRoutes<TDoc extends PublishableContentDocument, TPublic>(
   config: ContentRoutesConfig<TDoc, TPublic>
 ) {
   const { label, model, toPublic, createSchema, updateSchema, searchFields, image: imageConfig } = config;
@@ -108,7 +108,7 @@ export function createContentRoutes<TDoc extends OrderedContentDocument, TPublic
     if (!parsed.success) return fail("Invalid query parameters", 400);
 
     const { page, limit, q, published } = parsed.data;
-    const filter: QueryFilter<OrderedContentDocument> = {};
+    const filter: QueryFilter<PublishableContentDocument> = {};
 
     // Drafts are only visible to admins; everyone else always gets published items.
     const isAdmin = (await requireAdmin(request)).session !== null;
@@ -125,7 +125,7 @@ export function createContentRoutes<TDoc extends OrderedContentDocument, TPublic
     const [items, total] = await Promise.all([
       model
         .find(filter as QueryFilter<TDoc>)
-        .sort({ order: 1, createdAt: -1 })
+        .sort(NEWEST_FIRST)
         .skip((page - 1) * limit)
         .limit(limit),
       model.countDocuments(filter as QueryFilter<TDoc>),

@@ -25,7 +25,10 @@ export interface ResourceManagerProps<T extends { id: string }> {
   /** Singular noun for buttons and messages, e.g. "FAQ". */
   singular: string;
   endpoint: string;
-  columns: ColumnConfig<T>[];
+  /** Table columns. Ignored when `renderCard` is set. */
+  columns?: ColumnConfig<T>[];
+  /** Shows items as a grid of cards (e.g. photos) instead of a table. */
+  renderCard?: (item: T) => React.ReactNode;
   fields: FieldConfig[];
   /** Form state for a new record (no item) or an existing one. */
   toFormValues: (item?: T) => FormValues;
@@ -65,7 +68,8 @@ export function ResourceManager<T extends { id: string }>({
   description,
   singular,
   endpoint,
-  columns,
+  columns = [],
+  renderCard,
   fields,
   toFormValues,
   toPayload,
@@ -150,6 +154,29 @@ export function ResourceManager<T extends { id: string }>({
     }
   };
 
+  const rowActions = (item: T) => (
+    <div className="flex justify-end gap-1">
+      <button
+        type="button"
+        onClick={() => openEdit(item)}
+        aria-label={`${editLabel} ${getItemLabel(item)}`}
+        title={editLabel}
+        className="rounded-md p-2 text-hr-gray transition-colors hover:bg-hr-white/10 hover:text-hr-green-toxic"
+      >
+        <Pencil className="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        onClick={() => setDeleteTarget(item)}
+        aria-label={`Delete ${getItemLabel(item)}`}
+        title="Delete"
+        className="rounded-md p-2 text-hr-gray transition-colors hover:bg-red-500/10 hover:text-red-400"
+      >
+        <Trash2 className="h-4 w-4" />
+      </button>
+    </div>
+  );
+
   return (
     <div>
       <AdminPageHeader
@@ -202,69 +229,74 @@ export function ResourceManager<T extends { id: string }>({
         <AdminEmptyState>{isFiltered ? "Nothing matches your search." : emptyMessage}</AdminEmptyState>
       ) : (
         <div className="overflow-hidden rounded-2xl border border-hr-white/10 bg-hr-white/5">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm" aria-busy={isLoading}>
-              <thead>
-                <tr className="border-b border-hr-white/10 text-xs uppercase tracking-wide text-hr-gray">
-                  {columns.map((column) => (
-                    <th key={column.header} scope="col" className={cn("px-4 py-3 font-hr-600", column.className)}>
-                      {column.header}
-                    </th>
+          {renderCard ? (
+            <ul
+              className="grid grid-cols-2 gap-3 p-3 sm:grid-cols-3 sm:gap-4 sm:p-4 lg:grid-cols-4"
+              aria-busy={isLoading}
+            >
+              {isLoading && items.length === 0
+                ? Array.from({ length: 8 }, (_, index) => (
+                    <li key={index} className="aspect-4/3 animate-pulse rounded-xl bg-hr-white/10" />
+                  ))
+                : items.map((item) => (
+                    <li
+                      key={item.id}
+                      className={cn(
+                        "group relative overflow-hidden rounded-xl border border-hr-white/10 bg-hr-black/30 text-hr-white transition-colors hover:border-hr-green-toxic/30",
+                        isLoading && "opacity-60"
+                      )}
+                    >
+                      {renderCard(item)}
+                      <div className="absolute right-2 top-2 rounded-lg bg-hr-black/70 backdrop-blur-sm transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:focus-within:opacity-100">
+                        {rowActions(item)}
+                      </div>
+                    </li>
                   ))}
-                  <th scope="col" className="px-4 py-3 text-right font-hr-600">
-                    <span className="sr-only">Actions</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {isLoading && items.length === 0
-                  ? Array.from({ length: 4 }, (_, index) => (
-                      <tr key={index} className="border-b border-hr-white/5">
-                        <td colSpan={columns.length + 1} className="px-4 py-4">
-                          <div className="h-4 w-2/3 animate-pulse rounded bg-hr-white/10" />
-                        </td>
-                      </tr>
-                    ))
-                  : items.map((item) => (
-                      <tr
-                        key={item.id}
-                        className={cn(
-                          "border-b border-hr-white/5 text-hr-white transition-colors last:border-0 hover:bg-hr-white/5",
-                          isLoading && "opacity-60"
-                        )}
-                      >
-                        {columns.map((column) => (
-                          <td key={column.header} className={cn("px-4 py-3 align-top", column.className)}>
-                            {column.cell(item)}
-                          </td>
-                        ))}
-                        <td className="px-4 py-3 align-top">
-                          <div className="flex justify-end gap-1">
-                            <button
-                              type="button"
-                              onClick={() => openEdit(item)}
-                              aria-label={`${editLabel} ${getItemLabel(item)}`}
-                              title={editLabel}
-                              className="rounded-md p-2 text-hr-gray transition-colors hover:bg-hr-white/10 hover:text-hr-green-toxic"
-                            >
-                              <Pencil className="h-4 w-4" />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setDeleteTarget(item)}
-                              aria-label={`Delete ${getItemLabel(item)}`}
-                              title="Delete"
-                              className="rounded-md p-2 text-hr-gray transition-colors hover:bg-red-500/10 hover:text-red-400"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
+            </ul>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm" aria-busy={isLoading}>
+                <thead>
+                  <tr className="border-b border-hr-white/10 text-xs uppercase tracking-wide text-hr-gray">
+                    {columns.map((column) => (
+                      <th key={column.header} scope="col" className={cn("px-4 py-3 font-hr-600", column.className)}>
+                        {column.header}
+                      </th>
                     ))}
-              </tbody>
-            </table>
-          </div>
+                    <th scope="col" className="px-4 py-3 text-right font-hr-600">
+                      <span className="sr-only">Actions</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {isLoading && items.length === 0
+                    ? Array.from({ length: 4 }, (_, index) => (
+                        <tr key={index} className="border-b border-hr-white/5">
+                          <td colSpan={columns.length + 1} className="px-4 py-4">
+                            <div className="h-4 w-2/3 animate-pulse rounded bg-hr-white/10" />
+                          </td>
+                        </tr>
+                      ))
+                    : items.map((item) => (
+                        <tr
+                          key={item.id}
+                          className={cn(
+                            "border-b border-hr-white/5 text-hr-white transition-colors last:border-0 hover:bg-hr-white/5",
+                            isLoading && "opacity-60"
+                          )}
+                        >
+                          {columns.map((column) => (
+                            <td key={column.header} className={cn("px-4 py-3 align-top", column.className)}>
+                              {column.cell(item)}
+                            </td>
+                          ))}
+                          <td className="px-4 py-3 align-top">{rowActions(item)}</td>
+                        </tr>
+                      ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
           {totalPages > 1 && (
             <div className="flex items-center justify-between border-t border-hr-white/10 px-4 py-3 text-sm text-hr-gray">

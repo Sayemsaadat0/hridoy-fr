@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/db";
 import { Program, toPublicProgram, type PublicProgram } from "@/models/program.model";
+import { NEWEST_FIRST } from "@/lib/queries/sort";
 import { Faq, toPublicFaq, type PublicFaq } from "@/models/faq.model";
 import {
   GalleryItem,
@@ -7,6 +8,7 @@ import {
   type PublicGalleryItem,
 } from "@/models/gallery-item.model";
 import { Notice, toPublicNotice } from "@/models/notice.model";
+import { Routine, toPublicRoutine, type PublicRoutine } from "@/models/routine.model";
 
 /**
  * Server-only reads for the public site (Server Components). They query MongoDB
@@ -26,7 +28,7 @@ async function safeQuery<T>(label: string, query: () => Promise<T[]>): Promise<T
 
 export function getPublishedPrograms(limit?: number): Promise<PublicProgram[]> {
   return safeQuery("programs", async () => {
-    const query = Program.find({ isPublished: true }).sort({ order: 1, createdAt: -1 });
+    const query = Program.find({ isPublished: true }).sort(NEWEST_FIRST);
     if (limit) query.limit(limit);
     return (await query).map(toPublicProgram);
   });
@@ -34,15 +36,21 @@ export function getPublishedPrograms(limit?: number): Promise<PublicProgram[]> {
 
 export function getPublishedFaqs(): Promise<PublicFaq[]> {
   return safeQuery("faqs", async () =>
-    (await Faq.find({ isPublished: true }).sort({ order: 1, createdAt: -1 })).map(toPublicFaq)
+    (await Faq.find({ isPublished: true }).sort(NEWEST_FIRST)).map(toPublicFaq)
   );
 }
 
 export function getPublishedGalleryItems(): Promise<PublicGalleryItem[]> {
   return safeQuery("gallery", async () =>
-    (await GalleryItem.find({ isPublished: true }).sort({ order: 1, createdAt: -1 })).map(
+    (await GalleryItem.find({ isPublished: true }).sort(NEWEST_FIRST)).map(
       toPublicGalleryItem
     )
+  );
+}
+
+export function getPublishedRoutines(): Promise<PublicRoutine[]> {
+  return safeQuery("routines", async () =>
+    (await Routine.find({ isPublished: true }).sort(NEWEST_FIRST)).map(toPublicRoutine)
   );
 }
 

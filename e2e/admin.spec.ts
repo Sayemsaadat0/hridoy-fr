@@ -1,6 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
-import { cleanupE2eRecords, dialog, expectToast, row, uniqueLabel } from "./helpers";
+import { card, cleanupE2eRecords, dialog, expectToast, row, uniqueLabel } from "./helpers";
 
 const TEST_IMAGE = path.join(__dirname, "fixtures", "pixel.png");
 const IMAGEKIT_URL = /^https:\/\/ik\.imagekit\.io\//;
@@ -16,7 +16,8 @@ test.afterAll(async ({ browser }) => {
 async function deleteRow(page: Page, label: string) {
   await page.getByRole("button", { name: `Delete ${label}` }).click();
   await page.getByRole("alertdialog").getByRole("button", { name: "Delete" }).click();
-  await expect(row(page, label)).toHaveCount(0);
+  // Works for both table rows and grid cards.
+  await expect(page.getByRole("button", { name: `Delete ${label}` })).toHaveCount(0);
 }
 
 function isoDayFromNow(days: number): string {
@@ -27,7 +28,7 @@ test.describe("dashboard", () => {
   test("shows live counts and links to each section", async ({ page }) => {
     await page.goto("/admin");
 
-    for (const label of ["Programs", "FAQs", "Notices", "Gallery photos", "Contact messages"]) {
+    for (const label of ["Programs", "FAQs", "Notices", "Gallery photos", "Routines", "Contact messages"]) {
       const card = page.getByRole("main").getByRole("link").filter({ hasText: label });
       await expect(card).toBeVisible();
       await expect(card).toContainText(/\d+/);
@@ -46,7 +47,6 @@ test.describe("FAQs", () => {
     await page.getByRole("button", { name: "Add FAQ" }).click();
     await dialog(page).getByLabel("Question").fill(question);
     await dialog(page).getByLabel("Answer").fill("Created by the Playwright suite.");
-    await dialog(page).getByLabel("Display order").fill("99");
     await dialog(page).getByRole("button", { name: "Create FAQ" }).click();
 
     await expectToast(page, "FAQ created");
@@ -129,6 +129,47 @@ test.describe("Programs", () => {
   });
 });
 
+test.describe("Routines", () => {
+  test("create with several day groups, show on routine page, edit, delete", async ({ page }) => {
+    const classTitle = uniqueLabel("Class");
+
+    await page.goto("/admin/routines");
+    await page.getByRole("button", { name: "Add Routine" }).click();
+    await dialog(page).getByLabel("Class").fill(classTitle);
+    await dialog(page).getByLabel("Search icons").fill("flask");
+    await dialog(page).getByRole("button", { name: "FlaskConical", exact: true }).click();
+    await dialog(page).getByLabel("Day group 1 days").fill("শনি, সোম");
+    await dialog(page).getByLabel("Day group 1 time slot 1 time").fill("সকাল ৮:০০ - ৯:০০");
+    await dialog(page).getByRole("button", { name: "Add time slot" }).click();
+    await dialog(page).getByLabel("Day group 1 time slot 2 time").fill("বিকাল ৪:০০ - ৫:০০");
+    await dialog(page).getByLabel("Day group 1 time slot 2 colour").selectOption("teal");
+    await dialog(page).getByRole("button", { name: "Add day group" }).click();
+    await dialog(page).getByLabel("Day group 2 days").fill("রবি");
+    await dialog(page).getByLabel("Day group 2 time slot 1 time").fill("সন্ধ্যা ৬:০০ - ৭:০০");
+    await dialog(page).getByRole("button", { name: "Create Routine" }).click();
+
+    await expectToast(page, "Routine created");
+    await page.getByRole("button", { name: `Edit ${classTitle}` }).click();
+    await expect(dialog(page).getByRole("button", { name: "FlaskConical", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await dialog(page).getByRole("button", { name: "Cancel" }).click();
+    await expect(row(page, classTitle)).toContainText("বিকাল ৪:০০ - ৫:০০");
+    await expect(row(page, classTitle)).toContainText("রবি");
+
+    await page.goto("/routine");
+    await expect(page.getByText(classTitle)).toBeVisible();
+    await expect(page.getByText("সন্ধ্যা ৬:০০ - ৭:০০").first()).toBeVisible();
+
+    await page.goto("/admin/routines");
+    await page.getByRole("button", { name: `Edit ${classTitle}` }).click();
+    await dialog(page).getByRole("button", { name: "Remove day group 2", exact: true }).click();
+    await dialog(page).getByRole("button", { name: "Save changes" }).click();
+    await expectToast(page, "Routine updated");
+    await expect(row(page, classTitle)).not.toContainText("রবি");
+
+    await deleteRow(page, classTitle);
+  });
+});
+
 test.describe("Gallery", () => {
   test("uploads a photo that appears on the gallery page", async ({ page }) => {
     const title = uniqueLabel("Photo");
@@ -137,10 +178,9 @@ test.describe("Gallery", () => {
     await page.getByRole("button", { name: "Add Photo" }).click();
     await dialog(page).getByLabel("Photo").setInputFiles(TEST_IMAGE);
     await dialog(page).getByLabel("Title").fill(title);
-    await dialog(page).getByLabel("Display order").fill("0"); // order 0 sorts first, so it shows on page 1 of the table
     await dialog(page).getByRole("button", { name: "Create Photo" }).click();
     await expectToast(page, "Photo created", UPLOAD_TIMEOUT);
-    await expect(row(page, title).locator("img")).toHaveAttribute("src", IMAGEKIT_URL);
+    await expect(card(page, title).locator("img")).toHaveAttribute("src", IMAGEKIT_URL);
 
     await page.goto("/gallery");
     await expect(page.getByAltText(title).first()).toBeVisible();
@@ -201,13 +241,14 @@ test.describe("Contacts", () => {
     const subject = uniqueLabel("Contact");
 
     await page.goto("/contact");
-    await page.locator("#firstName").fill("E2E");
-    await page.locator("#lastName").fill("Tester");
-    await page.locator("#email").fill("E2E.Tester@Example.com");
-    await page.locator("#phone").fill("০১৭১২-৩৪৫৬৭৮"); // Bangla digits + dash are normalized
-    await page.locator("#subject").fill(subject);
-    await page.locator("#details").fill("Sent by the Playwright suite.");
-    await page.getByRole("button", { name: "পাঠান" }).click();
+    const form = page.locator("form");
+    await form.getByLabel("নামের প্রথম অংশ").fill("E2E");
+    await form.getByLabel("নামের শেষ অংশ").fill("Tester");
+    await form.getByLabel("ইমেইল ঠিকানা").fill("E2E.Tester@Example.com");
+    await form.getByLabel("ফোন নম্বর").fill("০১৭১২-৩৪৫৬৭৮"); // Bangla digits + dash are normalized
+    await form.getByLabel("বিষয়").fill(subject);
+    await form.getByLabel("বিস্তারিত").fill("Sent by the Playwright suite.");
+    await form.getByRole("button", { name: "পাঠান" }).click();
     await expectToast(page, "বার্তা সফলভাবে পাঠানো হয়েছে");
 
     await page.goto("/admin/contacts");

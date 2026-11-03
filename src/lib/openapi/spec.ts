@@ -1,7 +1,7 @@
 import { openApiComponents } from "./components";
 import { authPaths } from "./paths/auth";
 import { noticePaths } from "./paths/notices";
-import { contactPaths, faqPaths, galleryPaths, programPaths } from "./paths/content";
+import { contactPaths, faqPaths, galleryPaths, programPaths, routinePaths } from "./paths/content";
 
 /**
  * OpenAPI 3 spec served at GET /api/docs.
@@ -47,6 +47,7 @@ export const openApiSpec = {
     { name: "Programs", description: "Courses shown on the site; writes are admin only" },
     { name: "FAQs", description: "Home page FAQs; writes are admin only" },
     { name: "Gallery", description: "Gallery photos; writes are admin only" },
+    { name: "Routines", description: "Weekly class routine; writes are admin only" },
     { name: "Contacts", description: "Public contact form; reading is admin only" },
   ],
   security: [{ bearerAuth: [] }],
@@ -56,6 +57,7 @@ export const openApiSpec = {
     ...programPaths,
     ...faqPaths,
     ...galleryPaths,
+    ...routinePaths,
     ...contactPaths,
   },
   components: openApiComponents,

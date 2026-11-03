@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:admin": "tsx scripts/seed-admin.ts",
+    "seed:routines": "tsx scripts/seed-routines.ts",
     "test:e2e": "playwright test",
     "migrate:images": "tsx scripts/migrate-images.ts"
   },

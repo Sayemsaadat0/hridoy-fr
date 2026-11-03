@@ -13,7 +13,6 @@ export interface ProgramDocument extends Document {
   duration: string;
   /** Display text such as "২.৫K"; null hides the badge. */
   enrollmentCount: string | null;
-  order: number;
   isPublished: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -28,13 +27,12 @@ const programSchema = new Schema<ProgramDocument>(
     level: { type: String, enum: PROGRAM_LEVELS, required: true, default: "Beginner" },
     duration: { type: String, required: true, trim: true, maxlength: 60 },
     enrollmentCount: { type: String, trim: true, maxlength: 20, default: null },
-    order: { type: Number, required: true, default: 0 },
     isPublished: { type: Boolean, required: true, default: true },
   },
   { timestamps: true }
 );
 
-programSchema.index({ isPublished: 1, order: 1, createdAt: -1 });
+programSchema.index({ isPublished: 1, createdAt: -1 });
 
 export const Program: Model<ProgramDocument> =
   models.Program ?? model<ProgramDocument>("Program", programSchema);
@@ -48,7 +46,6 @@ export function toPublicProgram(program: ProgramDocument) {
     level: program.level,
     duration: program.duration,
     enrollmentCount: program.enrollmentCount ?? null,
-    order: program.order,
     isPublished: program.isPublished,
     createdAt: program.createdAt,
     updatedAt: program.updatedAt,

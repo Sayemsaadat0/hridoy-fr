@@ -9,9 +9,8 @@ export function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/** Fields shared by admin-managed content that is shown on the public site in a manual order. */
-export const orderedContentFields = {
-  order: z.coerce.number().int().min(0).max(10_000),
+/** Fields shared by admin-managed content that can be kept as a hidden draft. */
+export const publishableContentFields = {
   isPublished: z.boolean(),
 };
 

@@ -5,7 +5,7 @@ import type { ProgramLevel, PublicProgram } from "@/models/program.model";
 import { ImagePreview } from "@/components/admin/ResourceFormDialog";
 import { PublishedPill, ResourceManager, StatusPill } from "@/components/admin/ResourceManager";
 import type { ColumnConfig, FieldConfig, FormValues, SelectOption } from "@/components/admin/types";
-import { str, toInt } from "@/components/admin/format";
+import { str } from "@/components/admin/format";
 
 type Program = Omit<PublicProgram, "createdAt" | "updatedAt"> & { createdAt: string; updatedAt: string };
 
@@ -18,7 +18,6 @@ const LEVEL_OPTIONS = [
 const levelTone = { Beginner: "blue", Intermediate: "amber", Advanced: "red" } as const;
 
 const columns: ColumnConfig<Program>[] = [
-  { header: "#", cell: (program) => program.order, className: "w-12 text-hr-gray tabular-nums" },
   {
     header: "Program",
     cell: (program) => (
@@ -51,7 +50,6 @@ const fields: FieldConfig[] = [
     placeholder: "e.g. ২.৫K",
     hint: "Leave empty to hide.",
   },
-  { name: "order", label: "Display order", type: "number", hint: "Lower numbers show first." },
   { name: "isPublished", label: "Published", type: "switch" },
 ];
 
@@ -63,7 +61,6 @@ const toFormValues = (program?: Program): FormValues => ({
   level: program?.level ?? "Beginner",
   duration: program?.duration ?? "",
   enrollmentCount: program?.enrollmentCount ?? "",
-  order: String(program?.order ?? 0),
   isPublished: program?.isPublished ?? true,
 });
 
@@ -75,7 +72,6 @@ const toPayload = (values: FormValues) => ({
   level: str(values.level),
   duration: str(values.duration),
   enrollmentCount: str(values.enrollmentCount) || null,
-  order: toInt(values.order),
   isPublished: values.isPublished === true,
 });
 

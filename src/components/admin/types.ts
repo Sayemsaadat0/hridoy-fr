@@ -1,6 +1,7 @@
 import type React from "react";
 
-export type FormValue = string | boolean | File | null;
+/** Arrays hold structured values edited by a `custom` field (sent as JSON). */
+export type FormValue = string | boolean | File | null | unknown[];
 export type FormValues = Record<string, FormValue>;
 
 interface BaseField {
@@ -20,7 +21,16 @@ export type FieldConfig =
   | (BaseField & { type: "select"; options: readonly SelectOption[] })
   | (BaseField & { type: "switch" })
   /** Shown in the dialog but never edited or sent. */
-  | (BaseField & { type: "readonly" });
+  | (BaseField & { type: "readonly" })
+  /** Renders its own control, e.g. a nested list editor. Always full width. */
+  | (BaseField & { type: "custom"; render: (props: CustomFieldProps) => React.ReactNode });
+
+export interface CustomFieldProps {
+  /** Id of the field's label, for `aria-labelledby`. */
+  labelId: string;
+  value: FormValue;
+  onChange: (value: FormValue) => void;
+}
 
 export interface SelectOption {
   value: string;

@@ -16,6 +16,11 @@ export function row(page: Page, text: string) {
   return page.getByRole("row").filter({ hasText: text });
 }
 
+/** A card in a grid-style admin list (e.g. the gallery). */
+export function card(page: Page, text: string) {
+  return page.getByRole("main").getByRole("listitem").filter({ hasText: text });
+}
+
 export async function expectToast(page: Page, text: string | RegExp, timeout?: number) {
   await expect(page.locator("[data-sonner-toast]").filter({ hasText: text }).first()).toBeVisible({ timeout });
 }
@@ -27,6 +32,7 @@ export async function cleanupE2eRecords(request: APIRequestContext) {
     { endpoint: "/api/programs", params: "published=all" },
     { endpoint: "/api/gallery", params: "published=all" },
     { endpoint: "/api/notices", params: "published=all" },
+    { endpoint: "/api/routines", params: "published=all" },
     { endpoint: "/api/contacts", params: "" },
   ];
 

@@ -37,7 +37,7 @@ interface ResourceFormDialogProps {
   onSubmit: (values: FormValues) => Promise<void>;
 }
 
-const FULL_WIDTH_TYPES = new Set(["textarea", "image", "readonly"]);
+const FULL_WIDTH_TYPES = new Set(["textarea", "image", "readonly", "custom"]);
 
 // Mirrors the server limits in src/lib/image-storage.ts so obvious mistakes fail before uploading.
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
@@ -185,6 +185,21 @@ function FieldControl({ field, values, onChange, onInvalidFile }: FieldControlPr
           <label htmlFor={id} className="text-sm text-hr-white font-hr-500">
             {field.label}
           </label>
+        </div>
+      );
+
+    case "custom":
+      return (
+        <div className="space-y-2">
+          <span id={`${id}-label`} className={adminLabelClass}>
+            {field.label}
+            {field.required && <span className="ml-0.5 text-hr-green-toxic">*</span>}
+          </span>
+          {field.render({
+            labelId: `${id}-label`,
+            value,
+            onChange: (next) => onChange(field.name, next),
+          })}
         </div>
       );
 

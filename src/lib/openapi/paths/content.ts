@@ -1,6 +1,6 @@
 /**
- * OpenAPI paths and schemas for programs, FAQs, gallery and contact messages.
- * The three ordered-content resources share one shape, so they're generated.
+ * OpenAPI paths and schemas for programs, FAQs, gallery, routines and contact messages.
+ * The admin-managed content resources share one shape, so they're generated.
  */
 
 type JsonSchema = Record<string, unknown>;
@@ -53,8 +53,7 @@ const idParam = (label: string) => ({
   schema: { type: "string", example: "665f1c2e4b3a1a0012ab34cd" },
 });
 
-const orderedFields: Record<string, JsonSchema> = {
-  order: { type: "integer", minimum: 0, default: 0, description: "Ascending display order" },
+const publishFields: Record<string, JsonSchema> = {
   isPublished: { type: "boolean", default: true },
 };
 
@@ -64,7 +63,7 @@ const recordMeta: Record<string, JsonSchema> = {
   updatedAt: { type: "string", format: "date-time" },
 };
 
-interface OrderedResource {
+interface ContentResource {
   path: string;
   tag: string;
   label: string;
@@ -75,10 +74,10 @@ interface OrderedResource {
   imageField?: string;
 }
 
-function orderedResourcePaths({ path, tag, label, operationName, fields, required, imageField }: OrderedResource) {
+function contentResourcePaths({ path, tag, label, operationName, fields, required, imageField }: ContentResource) {
   const input: JsonSchema = {
     type: "object",
-    properties: { ...fields, ...orderedFields, ...(imageField ? { image: imageFile } : {}) },
+    properties: { ...fields, ...publishFields, ...(imageField ? { image: imageFile } : {}) },
   };
   const record: JsonSchema = {
     type: "object",
@@ -86,7 +85,7 @@ function orderedResourcePaths({ path, tag, label, operationName, fields, require
       ...recordMeta,
       ...fields,
       ...(imageField ? { [imageField]: imageUrlOutput } : {}),
-      ...orderedFields,
+      ...publishFields,
     },
   };
   const body = (schema: JsonSchema) =>
@@ -106,7 +105,7 @@ function orderedResourcePaths({ path, tag, label, operationName, fields, require
       get: {
         tags: [tag],
         summary: `List ${tag.toLowerCase()}`,
-        description: "Public. Published items sorted by `order`. Admins may pass `published=false|all` to see drafts.",
+        description: "Public. Published items, newest first. Admins may pass `published=false|all` to see drafts.",
         operationId: `list${operationName}s`,
         security: [],
         parameters: [
@@ -191,7 +190,7 @@ const imageUrlOutput: JsonSchema = {
   example: "https://ik.imagekit.io/your_id/hridoy-fr/gallery/photo_AbC123.jpg",
 };
 
-export const programPaths = orderedResourcePaths({
+export const programPaths = contentResourcePaths({
   path: "/programs",
   tag: "Programs",
   label: "Program",
@@ -207,7 +206,7 @@ export const programPaths = orderedResourcePaths({
   },
 });
 
-export const faqPaths = orderedResourcePaths({
+export const faqPaths = contentResourcePaths({
   path: "/faqs",
   tag: "FAQs",
   label: "FAQ",
@@ -219,7 +218,7 @@ export const faqPaths = orderedResourcePaths({
   },
 });
 
-export const galleryPaths = orderedResourcePaths({
+export const galleryPaths = contentResourcePaths({
   path: "/gallery",
   tag: "Gallery",
   label: "Gallery item",
@@ -229,6 +228,49 @@ export const galleryPaths = orderedResourcePaths({
   fields: {
     title: { type: "string", maxLength: 120 },
     description: { type: "string", nullable: true, maxLength: 500 },
+  },
+});
+
+export const routinePaths = contentResourcePaths({
+  path: "/routines",
+  tag: "Routines",
+  label: "Routine",
+  operationName: "Routine",
+  required: ["classTitle", "scheduleGroups"],
+  fields: {
+    classTitle: { type: "string", maxLength: 100, example: "নবম শ্রেণি" },
+    icon: {
+      type: "string",
+      default: "BookOpen",
+      example: "GraduationCap",
+      description: "Any Lucide icon component name (https://lucide.dev/icons), in PascalCase",
+    },
+    scheduleGroups: {
+      type: "array",
+      minItems: 1,
+      maxItems: 14,
+      description: "Replaced as a whole on update",
+      items: {
+        type: "object",
+        required: ["days", "timeSlots"],
+        properties: {
+          days: { type: "string", maxLength: 100, example: "শনি, সোম, বুধ" },
+          timeSlots: {
+            type: "array",
+            minItems: 1,
+            maxItems: 12,
+            items: {
+              type: "object",
+              required: ["time"],
+              properties: {
+                time: { type: "string", maxLength: 60, example: "সকাল ৮:০০ - ৯:০০" },
+                variant: { type: "string", enum: ["blue", "rose", "teal"], default: "blue" },
+              },
+            },
+          },
+        },
+      },
+    },
   },
 });
 

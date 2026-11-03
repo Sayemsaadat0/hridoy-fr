@@ -4,6 +4,7 @@ import HomeAbout from './HomeAbout'
 import HomeCourses from './HomeCourses'
 import GoogleReviews from './GoogleReviews'
 import HomeFAQ, { type HomeFaq } from './HomeFAQ'
+import HomeContact from './HomeContact'
 import { Course } from './types/course.types'
 
 interface HomeContainerProps {
@@ -19,6 +20,7 @@ const HomeContainer = ({ courses, faqs }: HomeContainerProps) => {
         <HomeCourses courses={courses} />
         <GoogleReviews />
         <HomeFAQ faqs={faqs} />
+        <HomeContact />
     </div>
   )
 }

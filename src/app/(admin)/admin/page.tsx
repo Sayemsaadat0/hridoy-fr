@@ -7,6 +7,7 @@ import { Program } from "@/models/program.model";
 import { Faq } from "@/models/faq.model";
 import { Notice, getDhakaToday } from "@/models/notice.model";
 import { GalleryItem } from "@/models/gallery-item.model";
+import { Routine } from "@/models/routine.model";
 import { ContactMessage } from "@/models/contact-message.model";
 
 // Counts must reflect edits immediately.
@@ -31,6 +32,8 @@ async function loadStats(): Promise<Stat[]> {
         Notice.countDocuments({ isPublished: true, date: { $gte: getDhakaToday() } }),
         GalleryItem.countDocuments(),
         GalleryItem.countDocuments({ isPublished: false }),
+        Routine.countDocuments(),
+        Routine.countDocuments({ isPublished: false }),
         ContactMessage.countDocuments(),
         ContactMessage.countDocuments({ status: "NEW" }),
       ])
@@ -40,8 +43,20 @@ async function loadStats(): Promise<Stat[]> {
       return null;
     });
 
-  const [programs, programDrafts, faqs, faqDrafts, notices, liveNotices, photos, photoDrafts, messages, newMessages] =
-    counts ?? Array<number | null>(10).fill(null);
+  const [
+    programs,
+    programDrafts,
+    faqs,
+    faqDrafts,
+    notices,
+    liveNotices,
+    photos,
+    photoDrafts,
+    routines,
+    routineDrafts,
+    messages,
+    newMessages,
+  ] = counts ?? Array<number | null>(12).fill(null);
 
   const drafts = (n: number | null) => (n === null ? "" : n === 0 ? "All published" : `${n} draft${n === 1 ? "" : "s"}`);
 
@@ -55,6 +70,7 @@ async function loadStats(): Promise<Stat[]> {
       href: ROUTES.ADMIN_NOTICE,
     },
     { label: "Gallery photos", value: photos, detail: drafts(photoDrafts), href: ROUTES.ADMIN_GALLERY },
+    { label: "Routines", value: routines, detail: drafts(routineDrafts), href: ROUTES.ADMIN_ROUTINES },
     {
       label: "Contact messages",
       value: messages,

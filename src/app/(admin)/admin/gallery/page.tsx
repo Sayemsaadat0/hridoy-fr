@@ -2,36 +2,41 @@
 
 import React from "react";
 import type { PublicGalleryItem } from "@/models/gallery-item.model";
-import { ImagePreview } from "@/components/admin/ResourceFormDialog";
 import { PublishedPill, ResourceManager } from "@/components/admin/ResourceManager";
-import type { ColumnConfig, FieldConfig, FormValues } from "@/components/admin/types";
-import { str, toInt } from "@/components/admin/format";
+import type { FieldConfig, FormValues } from "@/components/admin/types";
+import { resizedImageUrl } from "@/lib/image-url";
+import { str } from "@/components/admin/format";
 
 type GalleryItem = Omit<PublicGalleryItem, "createdAt" | "updatedAt"> & {
   createdAt: string;
   updatedAt: string;
 };
 
-const columns: ColumnConfig<GalleryItem>[] = [
-  { header: "#", cell: (item) => item.order, className: "w-12 text-hr-gray tabular-nums" },
-  { header: "Image", cell: (item) => <ImagePreview src={item.imageUrl} className="h-14 w-20" />, className: "w-24" },
-  {
-    header: "Title",
-    cell: (item) => (
-      <div className="max-w-xl space-y-1">
-        <p className="font-hr-600">{item.title}</p>
-        {item.description && <p className="line-clamp-2 text-hr-gray">{item.description}</p>}
-      </div>
-    ),
-  },
-  { header: "Status", cell: (item) => <PublishedPill isPublished={item.isPublished} /> },
-];
+/** Photo card for the admin gallery grid; edit/delete buttons are added by ResourceManager. */
+const renderCard = (item: GalleryItem) => (
+  <figure>
+    <div className="aspect-4/3 overflow-hidden bg-hr-white/5">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={resizedImageUrl(item.imageUrl, 480)}
+        alt={item.title}
+        loading="lazy"
+        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+      />
+    </div>
+    <figcaption className="flex items-center justify-between gap-2 px-3 py-2.5">
+      <p className="truncate text-sm font-hr-600" title={item.title}>
+        {item.title}
+      </p>
+      <PublishedPill isPublished={item.isPublished} />
+    </figcaption>
+  </figure>
+);
 
 const fields: FieldConfig[] = [
   { name: "image", label: "Photo", type: "image", required: true, currentUrlKey: "imageUrl" },
   { name: "title", label: "Title", type: "text", required: true, maxLength: 120, fullWidth: true, hint: "Also used as the image's alt text." },
   { name: "description", label: "Description", type: "textarea", maxLength: 500 },
-  { name: "order", label: "Display order", type: "number", hint: "Lower numbers show first." },
   { name: "isPublished", label: "Published", type: "switch" },
 ];
 
@@ -40,7 +45,6 @@ const toFormValues = (item?: GalleryItem): FormValues => ({
   imageUrl: item?.imageUrl ?? "", // preview only; never sent
   title: item?.title ?? "",
   description: item?.description ?? "",
-  order: String(item?.order ?? 0),
   isPublished: item?.isPublished ?? true,
 });
 
@@ -49,7 +53,6 @@ const toPayload = (values: FormValues) => ({
   image: values.image instanceof File ? values.image : undefined,
   title: str(values.title),
   description: str(values.description) || null,
-  order: toInt(values.order),
   isPublished: values.isPublished === true,
 });
 
@@ -60,7 +63,7 @@ const GalleryPage = () => (
     singular="Photo"
     endpoint="/api/gallery"
     baseParams={{ published: "all" }}
-    columns={columns}
+    renderCard={renderCard}
     fields={fields}
     toFormValues={toFormValues}
     toPayload={toPayload}

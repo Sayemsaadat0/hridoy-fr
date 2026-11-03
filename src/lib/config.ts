@@ -5,6 +5,7 @@ import {
   Phone,
   Bell,
   Images,
+  CalendarClock,
 } from "lucide-react";
 
 export const ROUTES = {
@@ -22,6 +23,7 @@ export const ROUTES = {
   ADMIN_CONTACTS: "/admin/contacts",
   ADMIN_NOTICE: "/admin/notice",
   ADMIN_GALLERY: "/admin/gallery",
+  ADMIN_ROUTINES: "/admin/routines",
 };
 
 export const ADMIN_SIDEBAR_ROUTES = [
@@ -67,36 +69,43 @@ export const ADMIN_SIDEBAR_ROUTES = [
     icon: Images,
     iconSize: 18,
   },
+  {
+    id: "routines",
+    title: "Routines",
+    path: ROUTES.ADMIN_ROUTINES,
+    icon: CalendarClock,
+    iconSize: 18,
+  },
 ];
 
 export const site_navigation_items = {
   defaultMenuItems: [
     {
-      label: "হোম",
+      label: "Home",
       href: ROUTES.HOME,
     },
     // {
-    //   label: "কোর্স",
+    //   label: "Courses",
     //   href: ROUTES.COURSE,
     // },
     {
-      label: "আমাদের সম্পর্কে",
+      label: "About Us",
       href: ROUTES.ABOUT,
     },
     {
-      label: "যোগাযোগ",
+      label: "Contact",
       href: ROUTES.CONTACT,
     },
     {
-      label: "রুটিন",
+      label: "Routine",
       href: ROUTES.ROUTINE,
     },
     {
-      label: "নোটিশ",
+      label: "Notice",
       href: ROUTES.NOTICE,
     },
     {
-      label: "গ্যালারি",
+      label: "Gallery",
       href: ROUTES.GALLERY,
     },
   ],
