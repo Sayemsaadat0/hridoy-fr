@@ -1,9 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import React from "react";
 import {
   Mail,
   Phone,
@@ -13,50 +10,12 @@ import {
   Twitter,
   Linkedin,
   Instagram,
-  Send,
   MapPin,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { toast } from "sonner";
+import ContactForm from "@/components/contact/ContactForm";
 
 const ContactPageContainer = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    subject: "",
-    details: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    
-    // Show success toast
-    toast.success("বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।");
-    
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      subject: "",
-      details: "",
-    });
-  };
-
   // Multiple locations - commented out for now
   // const offices = [
   //   {
@@ -284,145 +243,7 @@ const ContactPageContainer = () => {
               >
                 আমাদের <span className="text-hr-green-toxic">বার্তা পাঠান</span>
               </h2>
-              <div className="rounded-3xl border border-hr-white/15 bg-linear-to-br from-hr-white/8 via-hr-white/4 to-hr-white/0 backdrop-blur-sm p-8 lg:p-10 shadow-xl">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* First Name & Last Name */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="firstName"
-                        className="text-hr-white font-hr-600 uppercase"
-                        style={{ fontSize: "var(--text-hr-regular-12)" }}
-                      >
-                        নামের প্রথম অংশ
-                      </Label>
-                      <Input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="নামের প্রথম অংশ"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="lastName"
-                        className="text-hr-white font-hr-600 uppercase"
-                        style={{ fontSize: "var(--text-hr-regular-12)" }}
-                      >
-                        নামের শেষ অংশ
-                      </Label>
-                      <Input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="নামের শেষ অংশ"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Email & Phone */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="email"
-                        className="text-hr-white font-hr-600 uppercase"
-                        style={{ fontSize: "var(--text-hr-regular-12)" }}
-                      >
-                        ইমেইল ঠিকানা
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="ইমেইল ঠিকানা"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="phone"
-                        className="text-hr-white font-hr-600 uppercase"
-                        style={{ fontSize: "var(--text-hr-regular-12)" }}
-                      >
-                        ফোন নম্বর
-                      </Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                        placeholder="ফোন নম্বর"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Subject */}
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="subject"
-                      className="text-hr-white font-hr-600 uppercase"
-                      style={{ fontSize: "var(--text-hr-regular-12)" }}
-                    >
-                      বিষয়
-                    </Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      required
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full h-12 bg-hr-black/50 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 transition-all"
-                      placeholder="বিষয়"
-                    />
-                  </div>
-
-                  {/* Details */}
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="details"
-                      className="text-hr-white font-hr-600 uppercase"
-                      style={{ fontSize: "var(--text-hr-regular-12)" }}
-                    >
-                      বিস্তারিত
-                    </Label>
-                    <Textarea
-                      id="details"
-                      name="details"
-                      required
-                      value={formData.details}
-                      onChange={handleChange}
-                      rows={6}
-                      className="w-full bg-hr-black/50 min-h-40 border-hr-white/20 text-hr-white placeholder:text-hr-gray focus:border-hr-green-toxic focus:ring-hr-green-toxic/20 resize-none transition-all"
-                      placeholder="বিস্তারিত লিখুন"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-linear-to-r from-hr-green-toxic to-hr-green-light hover:from-hr-green-toxic/95 hover:to-hr-green-light/95 text-hr-white rounded-xl transition-all shadow-lg shadow-hr-green-toxic/10 hover:shadow-hr-green-toxic/20 hover:scale-[1.02] transform font-hr-600 flex items-center justify-center gap-2"
-                    style={{ fontSize: "var(--text-hr-regular-16)" }}
-                  >
-                    পাঠান
-                    <Send className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
+              <ContactForm />
             </motion.div>
           </div>
         </div>

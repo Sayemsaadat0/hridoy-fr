@@ -73,7 +73,7 @@ const DefaultNavbar = () => {
               <SheetTrigger asChild>
                 <button
                   className="text-hr-white hover:text-hr-catskill-white transition-colors p-2"
-                  aria-label="মেনু খুলুন"
+                  aria-label="Open menu"
                 >
                   <Menu className="size-6" />
                 </button>

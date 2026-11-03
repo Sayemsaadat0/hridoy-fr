@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import CourseCard from "../../_components/CourseCard";
 import { Course } from "../../_components/types/course.types";
 import { Input } from "@/components/ui/input";
@@ -14,86 +14,22 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const CoursesPageContainer = () => {
+const CoursesPageContainer = ({ courses }: { courses: Course[] }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Sample courses data
-  const courses: Course[] = [
-    {
-      id: "1",
-      title: "মলিকুলার বায়োলজি মাস্টারক্লাস",
-      description:
-        "DNA, RNA এবং প্রোটিন সংশ্লেষণ নিয়ে গভীর আলোচনা, ভার্চুয়াল ল্যাব অভিজ্ঞতার সাথে।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Advanced",
-      duration: "১২ সপ্তাহ",
-      enrollmentCount: "২.৫K",
-      // rating: 4.9,
-    },
-    {
-      id: "2",
-      title: "সেল বায়োলজি ফান্ডামেন্টালস",
-      description:
-        "কোষের গঠন, কার্যকারিতা ও প্রক্রিয়া একদম শুরু থেকে আয়ত্ত করুন।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Beginner",
-      duration: "৮ সপ্তাহ",
-      enrollmentCount: "৪.২K",
-      // rating: 4.8,
-    },
-    {
-      id: "3",
-      title: "জেনেটিক্স ও বিবর্তন",
-      description:
-        "বংশগতি, জেনেটিক ভ্যারিয়েশন এবং বিবর্তনীয় বায়োলজির মূলনীতি অনুসন্ধান করুন।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Intermediate",
-      duration: "১০ সপ্তাহ",
-      enrollmentCount: "৩.১K",
-      // rating: 4.9,
-    },
-    {
-      id: "4",
-      title: "মানব শারীরস্থান ও শারীরবিদ্যা",
-      description:
-        "মানবদেহের বিভিন্ন সিস্টেম ও তাদের কার্যকারিতার পূর্ণাঙ্গ পাঠ।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Intermediate",
-      duration: "১৪ সপ্তাহ",
-      enrollmentCount: "৩.৮K",
-      // rating: 4.7,
-    },
-    {
-      id: "5",
-      title: "মাইক্রোবায়োলজি এসেনশিয়ালস",
-      description:
-        "অণুজীব, তাদের ভূমিকা এবং স্বাস্থ্য ও পরিবেশের ওপর প্রভাব সম্পর্কে জানুন।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Beginner",
-      duration: "৯ সপ্তাহ",
-      enrollmentCount: "২.৯K",
-      // rating: 4.6,
-    },
-    {
-      id: "6",
-      title: "বাস্তুবিদ্যা ও পরিবেশ বায়োলজি",
-      description:
-        "ইকোসিস্টেম, জীববৈচিত্র্য এবং পরিবেশ সংরক্ষণ সম্পর্কে বুঝুন।",
-      thumbnail:
-        "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-      level: "Intermediate",
-      duration: "১১ সপ্তাহ",
-      enrollmentCount: "২.১K",
-      // rating: 4.8,
-    },
-  ];
+  const visibleCourses = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return courses.filter(
+      (course) =>
+        (selectedCategory === "All" || course.level === selectedCategory) &&
+        (!query ||
+          course.title.toLowerCase().includes(query) ||
+          course.description.toLowerCase().includes(query))
+    );
+  }, [courses, searchQuery, selectedCategory]);
+
 
   const categories: { value: string; label: string }[] = [
     { value: "All", label: "সকল" },
@@ -333,7 +269,15 @@ const CoursesPageContainer = () => {
             {/* Right Side - Courses Grid */}
             <div className="lg:col-span-3 col-span-full">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {courses.map((course, index) => (
+                {visibleCourses.length === 0 && (
+                  <p
+                    className="col-span-full rounded-2xl border border-hr-white/10 bg-hr-white/5 p-10 text-center text-hr-gray"
+                    style={{ fontSize: "var(--text-hr-regular-16)" }}
+                  >
+                    কোনো কোর্স পাওয়া যায়নি।
+                  </p>
+                )}
+                {visibleCourses.map((course, index) => (
                   <motion.div
                     key={course.id}
                     className="h-full"

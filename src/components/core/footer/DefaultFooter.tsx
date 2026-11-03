@@ -14,8 +14,8 @@ import Image from "next/image";
 
 const DefaultFooter = () => {
   const essentialLinks = [
-    { label: "আমাদের সম্পর্কে", href: ROUTES.ABOUT },
-    { label: "যোগাযোগ", href: ROUTES.CONTACT },
+    { label: "About Us", href: ROUTES.ABOUT },
+    { label: "Contact", href: ROUTES.CONTACT },
   ];
 
   const socialLinks = [
@@ -40,7 +40,7 @@ const DefaultFooter = () => {
           <div className="space-y-6">
             {/* Logo and Name */}
             <Image
-              src="/logo2.png"
+              src="/admin_logo1.png"
               alt="Ridoy Sir Biology"
               width={200}
               height={100}
@@ -51,8 +51,8 @@ const DefaultFooter = () => {
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-14)" }}
             >
-              পরবর্তী প্রজন্মের বায়োলজিস্টদের বিশ্বমানের শিক্ষা ও আধুনিক
-              গবেষণাভিত্তিক জ্ঞান দিয়ে এগিয়ে নিয়ে যাওয়াই আমাদের লক্ষ্য।
+              Our mission is to empower the next generation of biologists with
+              world-class education and modern, research-based knowledge.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ const DefaultFooter = () => {
               className="text-hr-white font-hr-700 mb-4"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              যোগাযোগ
+              Contact
             </h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -71,7 +71,7 @@ const DefaultFooter = () => {
                   className="text-hr-gray font-hr-400"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  রিদয় স্যার বায়োলজি, বগুড়া সিটি কলেজের কাছে
+                  Ridoy Sir Biology, near Bogura City College
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -103,7 +103,7 @@ const DefaultFooter = () => {
               className="text-hr-white font-hr-700 mb-4"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              লিংক
+              Links
             </h4>
             <ul className="space-y-3">
               {essentialLinks.map((link) => (
@@ -161,7 +161,7 @@ const DefaultFooter = () => {
                   className="text-hr-gray font-hr-500"
                   style={{ fontSize: "var(--text-hr-regular-14)" }}
                 >
-                  ২০ হাজার+ শিক্ষার্থীর আস্থা
+                  Trusted by 20,000+ students
                 </span>
               </div>
             </div>

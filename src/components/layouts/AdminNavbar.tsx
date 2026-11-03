@@ -18,7 +18,9 @@ export const AdminNavbar: React.FC = () => {
   useEffect(() => {
     fetch("/api/auth/me")
       .then((res) => (res.ok ? res.json() : null))
-      .then((data) => data && setUser(data));
+      .then((payload) => {
+        if (payload?.status === "success") setUser(payload.data);
+      });
   }, []);
 
   const handleLogout = async () => {

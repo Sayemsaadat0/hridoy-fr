@@ -1,91 +1,30 @@
-"use client";
-
 import React from "react";
-import { Calendar, BookOpen, GraduationCap, Clock } from "lucide-react";
+import { BookOpen, Clock, icons } from "lucide-react";
+import type { RoutineScheduleGroup, RoutineVariant } from "@/models/routine.constants";
 
-interface TimeSlot {
-  time: string;
-  variant: "blue" | "rose" | "teal";
-}
-
-interface ScheduleGroup {
-  days: string;
-  timeSlots: TimeSlot[];
-}
-
-interface ClassSchedule {
+export interface ClassRoutineItem {
+  id: string;
   classTitle: string;
-  iconType: "book" | "graduation";
-  scheduleGroups: ScheduleGroup[];
+  /** Lucide icon component name, e.g. "BookOpen". */
+  icon: string;
+  scheduleGroups: RoutineScheduleGroup[];
 }
 
-const routineData: ClassSchedule[] = [
-  {
-    classTitle: "নবম শ্রেণি",
-    iconType: "book",
-    scheduleGroups: [
-      {
-        days: "শনি, সোম, বুধ",
-        timeSlots: [
-          { time: "সকাল ৮:০০ - ৯:০০", variant: "blue" },
-          { time: "সকাল ১০:০০ - ১১:০০", variant: "blue" },
-        ],
-      },
-      {
-        days: "রবি, মঙ্গল, বৃহস্পতি",
-        timeSlots: [
-          { time: "সন্ধ্যা ৬:০০ - ৭:০০", variant: "rose" },
-        ],
-      },
-    ],
-  },
-  {
-    classTitle: "দশম শ্রেণি",
-    iconType: "graduation",
-    scheduleGroups: [
-      {
-        days: "শনি, সোম, বুধ",
-        timeSlots: [
-          { time: "সকাল ৯:০০ - ১০:০০", variant: "blue" },
-          { time: "বিকাল ৪:০০ - ৫:০০", variant: "teal" },
-          { time: "সন্ধ্যা ৬:০০ - ৭:০০", variant: "rose" },
-        ],
-      },
-      {
-        days: "রবি, মঙ্গল, বৃহস্পতি",
-        timeSlots: [
-          { time: "সকাল ৮:০০ - ৯:০০", variant: "blue" },
-        ],
-      },
-    ],
-  },
-];
+const BADGE_STYLES: Record<RoutineVariant, string> = {
+  blue: "bg-sky-500/10 text-sky-400 border border-sky-500/20 hover:bg-sky-500/20",
+  rose: "bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20",
+  teal: "bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20",
+};
 
-const ClassRoutine = () => {
-  const getBadgeStyle = (variant: string) => {
-    switch (variant) {
-      case "rose":
-        return "bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20";
-      case "teal":
-        return "bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20";
-      case "blue":
-      default:
-        return "bg-sky-500/10 text-sky-400 border border-sky-500/20 hover:bg-sky-500/20";
-    }
-  };
+const BULLET_STYLES: Record<RoutineVariant, string> = {
+  blue: "bg-sky-500 shadow-sky-500/50",
+  rose: "bg-rose-500 shadow-rose-500/50",
+  teal: "bg-teal-500 shadow-teal-500/50",
+};
 
-  const getBulletColor = (variant: string) => {
-    switch (variant) {
-      case "rose":
-        return "bg-rose-500 shadow-rose-500/50";
-      case "teal":
-        return "bg-teal-500 shadow-teal-500/50";
-      case "blue":
-      default:
-        return "bg-sky-500 shadow-sky-500/50";
-    }
-  };
 
+/** Weekly class routine cards. Data comes from the Routine API (managed in the admin panel). */
+const ClassRoutine = ({ routines }: { routines: ClassRoutineItem[] }) => {
   return (
     <div className="relative overflow-hidden py-6">
       {/* Background gradients mirroring the premium site feel */}
@@ -116,14 +55,22 @@ const ClassRoutine = () => {
 
         {/* Routine Grid Container */}
         <div className="max-w-4xl mx-auto">
+          {routines.length === 0 ? (
+            <p
+              className="rounded-2xl border border-hr-white/10 bg-hr-green-dark/40 p-8 text-center text-hr-gray font-hr-500"
+              style={{ fontSize: "var(--text-hr-regular-16)" }}
+            >
+              রুটিন শীঘ্রই প্রকাশ করা হবে।
+            </p>
+          ) : (
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {routineData.map((item, idx) => {
-              const IconComponent =
-                item.iconType === "book" ? BookOpen : GraduationCap;
+            {routines.map((item) => {
+              // Rendered on the server, so the full icon set never reaches the browser.
+              const IconComponent = icons[item.icon as keyof typeof icons] ?? BookOpen;
 
               return (
                 <div
-                  key={idx}
+                  key={item.id}
                   className="group relative rounded-2xl border border-hr-white/10 bg-hr-green-dark/40 backdrop-blur-sm p-6 lg:p-8 hover:border-hr-green-toxic/30 transition-all hover:shadow-xl hover:shadow-hr-green-toxic/5 h-full flex flex-col justify-between"
                 >
                   <div>
@@ -143,16 +90,14 @@ const ClassRoutine = () => {
                     {/* Schedule Groups */}
                     <div className="space-y-6">
                       {item.scheduleGroups.map((group, groupIdx) => {
-                        // We use the first variant color of the group to decide bullet color
-                        const bulletVariant = group.timeSlots[0]?.variant || "blue";
+                        // The group's bullet takes the colour of its first time slot.
+                        const bulletVariant = group.timeSlots[0]?.variant ?? "blue";
 
                         return (
                           <div key={groupIdx} className="space-y-3">
                             <div className="flex items-center gap-2.5">
                               <div
-                                className={`w-2 h-2 rounded-full shadow-[0_0_8px_1px] ${getBulletColor(
-                                  bulletVariant
-                                )}`}
+                                className={`w-2 h-2 rounded-full shadow-[0_0_8px_1px] ${BULLET_STYLES[bulletVariant]}`}
                               />
                               <span
                                 className="text-hr-white font-hr-600 tracking-wide"
@@ -167,9 +112,7 @@ const ClassRoutine = () => {
                               {group.timeSlots.map((slot, slotIdx) => (
                                 <span
                                   key={slotIdx}
-                                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs md:text-sm font-hr-600 rounded-full transition-all duration-300 cursor-default ${getBadgeStyle(
-                                    slot.variant
-                                  )}`}
+                                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs md:text-sm font-hr-600 rounded-full transition-all duration-300 cursor-default ${BADGE_STYLES[slot.variant]}`}
                                 >
                                   <Clock className="w-3.5 h-3.5 stroke-[2]" />
                                   {slot.time}
@@ -190,6 +133,7 @@ const ClassRoutine = () => {
               );
             })}
           </div>
+          )}
         </div>
       </div>
     </div>

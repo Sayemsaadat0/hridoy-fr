@@ -1,23 +1,14 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { AUTH_COOKIE_NAME, verifySessionToken } from "@/lib/auth";
+import { requireAuth } from "@/lib/require-auth";
+import { ok } from "@/lib/api-response";
 
-export async function GET() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(AUTH_COOKIE_NAME)?.value;
+export async function GET(request: Request) {
+  const auth = await requireAuth(request);
+  if (!auth.session) return auth.error;
 
-  if (!token) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  }
-
-  const session = await verifySessionToken(token);
-  if (!session) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  }
-
-  return NextResponse.json({
-    id: session.sub,
-    email: session.email,
-    name: session.name,
+  return ok({
+    id: auth.session.sub,
+    email: auth.session.email,
+    name: auth.session.name,
+    role: auth.session.role,
   });
 }

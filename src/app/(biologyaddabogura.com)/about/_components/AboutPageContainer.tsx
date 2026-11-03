@@ -25,15 +25,15 @@ const AboutPageContainer = () => {
               className="text-hr-white font-hr-800 mb-6"
               style={{ fontSize: "var(--text-hr-regular-50)" }}
             >
-              <span className="text-hr-green-toxic">আমাদের</span> সম্পর্কে
+              <span className="text-hr-green-toxic">About</span> Us
             </h1>
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              পরিচিত হোন আপনার নিবেদিত বায়োলজি শিক্ষকের সাথে, যার শিক্ষাদানের
-              অভিজ্ঞতা ৬ বছরেরও বেশি — ব্যক্তিগত, পূর্ণাঙ্গ এবং আকর্ষণীয় পাঠের
-              মাধ্যমে শিক্ষার্থীদের বায়োলজিতে এগিয়ে থাকতে সাহায্য করাই যার লক্ষ্য।
+              Meet your dedicated biology teacher, with more than 6 years of
+              teaching experience, whose goal is to help students excel in
+              biology through personal, thorough and engaging lessons.
             </p>
           </div>
         </div>
@@ -47,28 +47,27 @@ const AboutPageContainer = () => {
             className="text-hr-white font-hr-800 mb-6 lg:mb-8 text-center lg:text-left"
             style={{ fontSize: "var(--text-hr-regular-40)" }}
           >
-            আপনার <span className="text-hr-green-toxic">বায়োলজি শেখার</span> যাত্রা শুরু হোক এখান থেকেই
+            Start Your <span className="text-hr-green-toxic">Biology Learning</span> Journey Here
           </h2>
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-16)" }}
             >
-              ২০১৮ সাল থেকে বায়োলজি পড়ানোর অভিজ্ঞতা নিয়ে, আমি জানি প্রতিটি
-              শিক্ষার্থী আলাদাভাবে শেখে। আমার শিক্ষাপদ্ধতিতে স্পষ্ট ব্যাখ্যা,
-              ভিজ্যুয়াল উপকরণ এবং বাস্তব উদাহরণের সমন্বয় থাকে, যা জটিল বায়োলজি
-              ধারণাগুলো সহজে বোঝা ও মনে রাখা সম্ভব করে তোলে।
+              Having taught biology since 2018, I know that every student learns
+              differently. My teaching combines clear explanations, visual aids
+              and real-world examples, making complex biology concepts easy to
+              understand and remember.
             </p>
             <p
               className="text-hr-gray font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-16)" }}
             >
-              আপনি পরীক্ষার জন্য প্রস্তুতি নিচ্ছেন, কোনো নির্দিষ্ট টপিকে সমস্যায়
-              আছেন, বা বায়োলজি সম্পর্কে আরও গভীর জ্ঞান অর্জন করতে চান — যাই হোক
-              না কেন, আমি আপনার শেখার ধরন ও লক্ষ্য অনুযায়ী ব্যক্তিগত দিকনির্দেশনা
-              দিয়ে থাকি। কোষ বিভাজন থেকে জেনেটিক্স, বাস্তুবিদ্যা থেকে মানব
-              শারীরস্থান — বায়োলজির প্রতিটি বিষয় আমি ভালোবাসা ও দক্ষতা দিয়ে
-              কভার করি।
+              Whether you are preparing for exams, struggling with a specific
+              topic, or want a deeper understanding of biology, I provide
+              personal guidance tailored to your learning style and goals. From
+              cell division to genetics, ecology to human anatomy, I cover every
+              area of biology with passion and expertise.
             </p>
           </div>
         </div>
@@ -100,7 +99,7 @@ const AboutPageContainer = () => {
                 >
                   <Image
                     src="https://i.pinimg.com/736x/48/96/6d/48966deea1b696cfee331a4bfc94cd26.jpg"
-                    alt="বায়োলজি শিক্ষক শিক্ষার্থীদের পড়াচ্ছেন"
+                    alt="Biology teacher teaching students"
                     width={800}
                     height={600}
                     className="w-full h-[400px] lg:h-[500px] object-cover"
@@ -115,13 +114,13 @@ const AboutPageContainer = () => {
                     className="text-hr-white font-hr-700 mb-1"
                     style={{ fontSize: "var(--text-hr-regular-18)" }}
                   >
-                    &quot;২০১৮ সাল থেকে শিক্ষার্থীদের বায়োলজিতে এগিয়ে থাকতে সহায়তা&quot;
+                    &quot;Helping students excel in biology since 2018&quot;
                   </p>
                   <p
                     className="text-hr-gray font-hr-500"
                     style={{ fontSize: "var(--text-hr-regular-14)" }}
                   >
-                    অভিজ্ঞ বায়োলজি শিক্ষক
+                    Experienced Biology Teacher
                   </p>
                 </div>
               </motion.div>
@@ -133,19 +132,18 @@ const AboutPageContainer = () => {
                 className="text-hr-white font-hr-800"
                 style={{ fontSize: "var(--text-hr-regular-40)" }}
               >
-                <span className="text-hr-green-toxic">৬+ বছরের</span> শিক্ষাদানের অভিজ্ঞতা
+                <span className="text-hr-green-toxic">6+ Years</span> of Teaching Experience
               </h2>
               <p
                 className="text-hr-gray font-hr-400 leading-relaxed"
                 style={{ fontSize: "var(--text-hr-regular-16)" }}
               >
-                ২০১৮ সাল থেকে, আমি পূর্ণাঙ্গ শিক্ষাদানের মাধ্যমে শিক্ষার্থীদের
-                বায়োলজি আয়ত্ত করতে সহায়তা করে আসছি। আমার অভিজ্ঞতা বায়োলজি
-                শিক্ষার সকল স্তর জুড়ে বিস্তৃত — মাধ্যমিক পর্যায়ের মৌলিক বিষয়
-                থেকে শুরু করে উচ্চতর টপিক পর্যন্ত। আমি বিশ্বাস করি এমন একটি
-                সহায়ক শিক্ষার পরিবেশ গড়ে তোলায়, যেখানে শিক্ষার্থীরা প্রশ্ন
-                করতে পারে, ধারণা অনুসন্ধান করতে পারে এবং বায়োলজিতে আত্মবিশ্বাস
-                গড়ে তুলতে পারে।
+                Since 2018, I have been helping students master biology through
+                thorough teaching. My experience spans every level of biology
+                education, from secondary-level fundamentals to advanced topics.
+                I believe in building a supportive learning environment where
+                students can ask questions, explore ideas and grow confident in
+                biology.
               </p>
 
               {/* Quote */}
@@ -155,10 +153,10 @@ const AboutPageContainer = () => {
                   className="text-hr-gray font-hr-400 leading-relaxed italic"
                   style={{ fontSize: "var(--text-hr-regular-16)" }}
                 >
-                  &quot;বায়োলজি কেবল তথ্য মুখস্থ করা নয় — এটি জীবজগতের
-                  আশ্চর্যজনক দুনিয়াকে বোঝার বিষয়। আমার লক্ষ্য হলো প্রতিটি
-                  শিক্ষার্থীর জন্য বায়োলজিকে সহজলভ্য, আকর্ষণীয় ও উপভোগ্য করে
-                  তোলা।&quot;
+                  &quot;Biology isn&apos;t just about memorising facts. It&apos;s about
+                  understanding the amazing world of living things. My goal is to
+                  make biology accessible, engaging and enjoyable for every
+                  student.&quot;
                 </p>
               </div>
             </div>
@@ -174,15 +172,15 @@ const AboutPageContainer = () => {
               className="text-hr-white font-hr-800 mb-6"
               style={{ fontSize: "var(--text-hr-regular-40)" }}
             >
-              কেন বেছে নেবেন <span className="text-hr-green-toxic">রিদয় স্যার বায়োলজি</span>-কে
+              Why Choose <span className="text-hr-green-toxic">Ridoy Sir Biology</span>
             </h2>
             <p
               className="text-hr-gray max-w-2xl mx-auto font-hr-400 leading-relaxed"
               style={{ fontSize: "var(--text-hr-regular-18)" }}
             >
-              ৬ বছরেরও বেশি নিবেদিত শিক্ষাদানের অভিজ্ঞতা নিয়ে, আমি পূর্ণাঙ্গ
-              বায়োলজি শিক্ষা দিই যা শিক্ষার্থীদের শিক্ষাগত লক্ষ্য পূরণ ও
-              জীববিজ্ঞান সম্পর্কে গভীর ধারণা গড়ে তুলতে সাহায্য করে।
+              With more than 6 years of dedicated teaching, I provide complete
+              biology education that helps students reach their academic goals
+              and build a deep understanding of life science.
             </p>
           </div>
 
@@ -191,27 +189,30 @@ const AboutPageContainer = () => {
             {[
               {
                 icon: Users,
-                title: "Experienced Tutor",
+                highlight: "Experienced",
+                rest: " Tutor",
                 description:
-                  "কোষের গঠন থেকে বাস্তুবিদ্যা ও জেনেটিক্স — বায়োলজির সকল গুরুত্বপূর্ণ বিষয়ে প্রমাণিত দক্ষতা নিয়ে ২০১৮ সাল থেকে শিক্ষাদান।",
+                  "Teaching since 2018 with proven expertise across every key area of biology, from cell structure to ecology and genetics.",
               },
               {
                 icon: Target,
-                title: "Personalized Learning",
+                highlight: "Personalized",
+                rest: " Learning",
                 description:
-                  "প্রতিটি শিক্ষার্থীর শেখার ধরন, গতি এবং নির্দিষ্ট শিক্ষাগত প্রয়োজন অনুযায়ী সাজানো শিক্ষাপদ্ধতি।",
+                  "Teaching tailored to each student's learning style, pace and specific academic needs.",
               },
               {
                 icon: TrendingUp,
-                title: "Proven Results",
+                highlight: "Proven",
+                rest: " Results",
                 description:
-                  "কার্যকর শিক্ষাপদ্ধতির মাধ্যমে শিক্ষার্থীদের গ্রেড উন্নত করা, আত্মবিশ্বাস গড়ে তোলা এবং বায়োলজির প্রতি সত্যিকারের ভালোবাসা তৈরিতে সহায়তা।",
+                  "Effective teaching that helps students improve their grades, build confidence and develop a genuine love for biology.",
               },
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div
-                  key={feature.title}
+                  key={feature.highlight}
                   className="text-center space-y-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -225,19 +226,8 @@ const AboutPageContainer = () => {
                     className="text-hr-white font-hr-700"
                     style={{ fontSize: "var(--text-hr-regular-24)" }}
                   >
-                    {feature.title === "Experienced Tutor" ? (
-                      <>
-                        <span className="text-hr-green-toxic">অভিজ্ঞ</span> শিক্ষক
-                      </>
-                    ) : feature.title === "Personalized Learning" ? (
-                      <>
-                        ব্যক্তিগত <span className="text-hr-green-toxic">শিক্ষাপদ্ধতি</span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="text-hr-green-toxic">প্রমাণিত</span> ফলাফল
-                      </>
-                    )}
+                    <span className="text-hr-green-toxic">{feature.highlight}</span>
+                    {feature.rest}
                   </h3>
                   <p
                     className="text-hr-gray font-hr-400 leading-relaxed"

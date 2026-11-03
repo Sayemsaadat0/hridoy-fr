@@ -3,16 +3,24 @@ import { HeroSection } from './HeroSection'
 import HomeAbout from './HomeAbout'
 import HomeCourses from './HomeCourses'
 import GoogleReviews from './GoogleReviews'
-import HomeFAQ from './HomeFAQ'
+import HomeFAQ, { type HomeFaq } from './HomeFAQ'
+import HomeContact from './HomeContact'
+import { Course } from './types/course.types'
 
-const HomeContainer = () => {
+interface HomeContainerProps {
+  courses: Course[]
+  faqs: HomeFaq[]
+}
+
+const HomeContainer = ({ courses, faqs }: HomeContainerProps) => {
   return (
     <div className='space-y-10 md:space-y-20'>
         <HeroSection />
         <HomeAbout />
-        <HomeCourses />
+        <HomeCourses courses={courses} />
         <GoogleReviews />
-        <HomeFAQ />
+        <HomeFAQ faqs={faqs} />
+        <HomeContact />
     </div>
   )
 }

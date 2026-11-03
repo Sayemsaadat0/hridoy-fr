@@ -1,160 +1,231 @@
 {
-  "openapi": "3.0.3",
   "info": {
-    "title": "hridoy-fr Admin API",
-    "description": "Auth API for the biologyaddabogura.com admin panel. Session is a JWT stored in an httpOnly cookie, set on login and cleared on logout.",
-    "version": "1.0.0"
+    "name": "hridoy-fr Admin API",
+    "description": "Auth API for the biologyaddabogura.com admin panel. Session is a JWT, set via an httpOnly `admin_session` cookie on login (and also returned in the login response body). Protected routes accept the token either via the cookie or an `Authorization: Bearer <token>` header. All responses use the envelope `{ status: \"success\"|\"error\", data|message }`.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "b1e4a9d0-3c2a-4b7e-9a1a-3f0e1c2d4e5f"
   },
-  "servers": [
-    { "url": "/api", "description": "Same-origin API routes" }
-  ],
-  "tags": [
-    { "name": "Auth", "description": "Admin authentication" }
-  ],
-  "paths": {
-    "/auth/login": {
-      "post": {
-        "tags": ["Auth"],
-        "summary": "Log in as admin",
-        "description": "Validates credentials against the Admin collection and, on success, sets an httpOnly session cookie (`admin_session`, JWT, 8h expiry).",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/LoginRequest" },
-              "example": {
-                "email": "admin@example.com",
-                "password": "supersecret"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Login successful. Sets the `admin_session` cookie.",
-            "headers": {
-              "Set-Cookie": {
-                "schema": { "type": "string" },
-                "description": "admin_session=<jwt>; HttpOnly; Path=/; SameSite=Lax; Max-Age=28800"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/AdminUser" }
-              }
-            }
-          },
-          "400": {
-            "description": "Request body failed validation (missing/invalid email or password)",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "error": "Invalid email or password" }
-              }
-            }
-          },
-          "401": {
-            "description": "No admin found for that email, or password does not match",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "error": "Invalid credentials" }
-              }
-            }
-          }
-        }
-      }
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "type": "string"
     },
-    "/auth/logout": {
-      "post": {
-        "tags": ["Auth"],
-        "summary": "Log out",
-        "description": "Clears the `admin_session` cookie. No request body.",
-        "responses": {
-          "200": {
-            "description": "Logout successful",
-            "headers": {
-              "Set-Cookie": {
-                "schema": { "type": "string" },
-                "description": "admin_session=; HttpOnly; Path=/; Max-Age=0"
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "description": "Admin authentication",
+      "item": [
+        {
+          "name": "Log in as admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.status === 'success' && res.data && res.data.token) {",
+                  "    pm.collectionVariables.set('admin_token', res.data.token);",
+                  "}"
+                ]
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": { "type": "boolean", "example": true }
-                  },
-                  "required": ["success"]
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"supersecret\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
               }
-            }
-          }
-        }
-      }
-    },
-    "/auth/me": {
-      "get": {
-        "tags": ["Auth"],
-        "summary": "Get the current session",
-        "description": "Reads the `admin_session` cookie and returns the decoded session if valid.",
-        "responses": {
-          "200": {
-            "description": "Authenticated",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/AdminUser" }
-              }
-            }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Validates credentials against the Admin collection. On success: sets an httpOnly `admin_session` cookie (JWT, 8h expiry) AND returns the same JWT in the response body (`data.token`) for non-browser/API clients. Rate limited to 5 attempts per 15 minutes per IP+email; requires a same-origin `Origin` header when present."
           },
-          "401": {
-            "description": "Missing, invalid, or expired session cookie",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" },
-                "example": { "error": "Not authenticated" }
-              }
+          "response": [
+            {
+              "name": "Login successful",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Set-Cookie",
+                  "value": "admin_session=<jwt>; HttpOnly; Path=/; SameSite=Lax; Max-Age=28800"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"665f1c2e4b3a1a0012ab34cd\",\n    \"email\": \"admin@example.com\",\n    \"name\": \"Admin Name\",\n    \"token\": \"<jwt>\"\n  }\n}"
+            },
+            {
+              "name": "Validation error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Invalid email or password\"\n}"
+            },
+            {
+              "name": "Invalid credentials",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Invalid credentials\"\n}"
+            },
+            {
+              "name": "Too many attempts",
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Retry-After",
+                  "value": "900"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Too many login attempts. Try again later.\"\n}"
+            },
+            {
+              "name": "Cross-origin request denied",
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Cross-origin request denied\"\n}"
             }
-          }
+          ]
+        },
+        {
+          "name": "Log out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "logout"]
+            },
+            "description": "Requires a valid session, via either the `admin_session` cookie or an `Authorization: Bearer <token>` header (header takes precedence). No request body. Clears the `admin_session` cookie. Note: this does not server-side-revoke the JWT itself — a token used via the Authorization header remains valid elsewhere until it expires."
+          },
+          "response": [
+            {
+              "name": "Logout successful",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Set-Cookie",
+                  "value": "admin_session=; HttpOnly; Path=/; Max-Age=0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Logged out successfully\"\n}"
+            },
+            {
+              "name": "Not authenticated",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Not authenticated\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get the current session",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Reads the session from either the `Authorization: Bearer <token>` header (checked first) or the `admin_session` cookie, and returns the decoded session if valid."
+          },
+          "response": [
+            {
+              "name": "Authenticated",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"665f1c2e4b3a1a0012ab34cd\",\n    \"email\": \"admin@example.com\",\n    \"name\": \"Admin Name\"\n  }\n}"
+            },
+            {
+              "name": "Not authenticated",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"Not authenticated\"\n}"
+            }
+          ]
         }
-      }
+      ]
     }
-  },
-  "components": {
-    "schemas": {
-      "LoginRequest": {
-        "type": "object",
-        "properties": {
-          "email": { "type": "string", "format": "email" },
-          "password": { "type": "string", "minLength": 1 }
-        },
-        "required": ["email", "password"]
-      },
-      "AdminUser": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string", "description": "Admin document ID (Mongo ObjectId string)" },
-          "email": { "type": "string", "format": "email" },
-          "name": { "type": "string" }
-        },
-        "required": ["id", "email", "name"]
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "properties": {
-          "error": { "type": "string" }
-        },
-        "required": ["error"]
-      }
-    },
-    "securitySchemes": {
-      "sessionCookie": {
-        "type": "apiKey",
-        "in": "cookie",
-        "name": "admin_session",
-        "description": "JWT session token, httpOnly, set by /auth/login. Required (implicitly, by the /admin/* proxy) for any admin-protected route."
-      }
-    }
-  }
+  ]
 }

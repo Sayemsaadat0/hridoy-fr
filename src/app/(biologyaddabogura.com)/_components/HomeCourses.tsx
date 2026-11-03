@@ -5,44 +5,8 @@ import CourseCard from "./CourseCard";
 import { Course } from "./types/course.types";
 import { ArrowRight } from "lucide-react";
 
-const HomeCourses = () => {
-  const courses: Course[] = [
-    {
-      id: "1",
-      title: "রিদয় স্যার বায়োলজি - ফ্রি ক্লাস ২০২৬",
-      description:
-        "নবম শ্রেণির শিক্ষার্থীদের জন্য বিশেষ ফ্রি ক্লাস।",
-      thumbnail:
-        "/p/12.png",
-      level: "Intermediate",
-      duration: "২ সপ্তাহ",
-      enrollmentCount: null,
-    },
-    // {
-    //   id: "2",
-    //   title: "Cell Biology Fundamentals",
-    //   description:
-    //     "Master cellular structures, functions, and processes from the ground up.",
-    //   thumbnail:
-    //     "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-    //   level: "Beginner",
-    //   duration: "8 weeks",
-    //   enrollmentCount: "4.2K",
-    //   rating: 4.8,
-    // },
-    // {
-    //   id: "3",
-    //   title: "Genetics & Evolution",
-    //   description:
-    //     "Explore heredity, genetic variation, and evolutionary biology principles.",
-    //   thumbnail:
-    //     "https://i.pinimg.com/736x/6c/8e/01/6c8e01266d78f1ca972b0386f9f9afa5.jpg",
-    //   level: "Intermediate",
-    //   duration: "10 weeks",
-    //   enrollmentCount: "3.1K",
-    //   rating: 4.9,
-    // },
-  ];
+const HomeCourses = ({ courses }: { courses: Course[] }) => {
+  if (courses.length === 0) return null;
 
   return (
     <div className="relative  overflow-hidden">

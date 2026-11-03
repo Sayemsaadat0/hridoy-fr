@@ -9,28 +9,15 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 
-const faqData = [
-  {
-    id: "1",
-    question: "লোকেশন ও যোগাযোগের তথ্য কোথায় পাব?",
-    answer:
-      "রিদয় স্যার বায়োলজি বগুড়া সিটি কলেজের কাছে অবস্থিত। আমাদের সাথে যোগাযোগ করতে পারেন ফোনে: ০১৫১৮৩৯০৬৭৪ অথবা ইমেইলে: info@biologyaddabogura.com। আরও বিস্তারিত ও দিকনির্দেশনার জন্য আমাদের যোগাযোগ পেজ দেখুন।",
-  },
-  {
-    id: "2",
-    question: "এখন কী কী কোর্স চলছে? আমরা কোন কোন সেক্টর কভার করি?",
-    answer:
-      "আমরা বর্তমানে ইন্টার ১ম বর্ষ, ইন্টার ২য় বর্ষ, ৯ম-১০ম শ্রেণির বায়োলজি এবং ভর্তি পরীক্ষার প্রস্তুতির কোর্স অফার করি। আমাদের পূর্ণাঙ্গ কারিকুলাম বায়োলজির সকল গুরুত্বপূর্ণ টপিক কভার করে, যা শিক্ষার্থীদের শিক্ষাজীবনে এগিয়ে থাকতে সাহায্য করে।",
-  },
-  {
-    id: "3",
-    question: "কোন কোন শিক্ষাস্তর কভার করা হয়?",
-    answer:
-      "আমরা ইন্টার ১ম বর্ষ, ইন্টার ২য় বর্ষ, ৯ম-১০ম শ্রেণির বায়োলজি এবং ভর্তি পরীক্ষার প্রস্তুতির কোর্স কভার করি। আমাদের বিশেষজ্ঞ শিক্ষাদান এই সকল স্তরের শিক্ষার্থীদের বায়োলজির ধারণা আয়ত্ত করতে ও শিক্ষাগত লক্ষ্য পূরণে সাহায্য করে।",
-  },
-];
+export interface HomeFaq {
+  id: string;
+  question: string;
+  answer: string;
+}
 
-const HomeFAQ = () => {
+const HomeFAQ = ({ faqs }: { faqs: HomeFaq[] }) => {
+  if (faqs.length === 0) return null;
+
   return (
     <div className="relative  overflow-hidden">
       {/* Main Content */}
@@ -72,7 +59,7 @@ const HomeFAQ = () => {
           {/* Right Side - FAQ Accordion */}
           <div className="pb-10">
             <Accordion type="single" collapsible className="space-y-4 pb-3">
-              {faqData.map((faq) => (
+              {faqs.map((faq) => (
                 <AccordionItem
                   key={faq.id}
                   value={faq.id}
